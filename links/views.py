@@ -5,13 +5,31 @@ from .models import Link
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.detail import DetailView
+from django.views.generic import ListView
+from django.db.models import Q
 
 
 def index(request):
     latest_links = Link.objects.order_by('-created_at')[:5]
     template = loader.get_template('links/index.html')
-    return HttpResponse(template.render({'links': latest_links}, request))
+    return HttpResponse(template.render({'object_list': latest_links, "list_title": "Recent links posted"}, request))
 
+
+class SearchResultsView(ListView):
+    model = Link
+    template_name = 'links/index.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Link.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+        return object_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["list_title"] = "Search results"
+        return context
 
 class LinkDetailView(DetailView):
 
