@@ -15,7 +15,7 @@ urlpatterns = [
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='authapp/logged_out.html'), name='logout'),
     path('password_change/', PasswordChangeView.as_view(
-        template_name='authapp/password_change_form.html'), name='password_change'),
+        template_name='authapp/password_change_form.html',success_url=reverse_lazy('authapp:password_change_done')), name='password_change'),
     path('password_change/done/', PasswordChangeDoneView.as_view(template_name='authapp/password_change_done.html'),
          name='password_change_done'),
     path('password_reset/', PasswordResetView.as_view(
