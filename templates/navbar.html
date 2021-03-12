@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="">How Do I Learn That <i class="fas fa-graduation-cap"></i></a>
+    <a class="navbar-brand" href=""><i class="fas fa-graduation-cap"></i> How Do I Learn That?</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,10 @@
         {% if request.user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'authapp:dashboard' %}">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'links:index' %}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'authapp:dashboard' %}">Me</a>
             </li>
         </ul>
         {% endif %}
