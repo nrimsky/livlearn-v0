@@ -1,31 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href=""><i class="fas fa-graduation-cap"></i> How Do I Learn That?</a>
+
+    <a class="navbar-brand" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap" style="color: orange"></i> How Do I Learn That?</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        {% if request.user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'links:index' %}">Home</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'authapp:dashboard' %}">Me</a>
-            </li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'authapp:dashboard' %}">Me</a>
+                </li>
+            {% endif %}
         </ul>
-        {% endif %}
         <span>
             {% if request.user.is_authenticated %}
-                Hello <i>@{{user.username}}</i>!
-                <a href="{% url 'authapp:logout' %}" class="btn btn-outline-secondary" style="margin-left: 10px">Logout</a>
+                <i class="fas fa-user-alt" style="color: orange"></i> {{user.email}}
+                <a href="{% url 'authapp:logout' %}" class="btn btn-outline-secondary" style="margin-left: 10px"><i class="fas fa-sign-out-alt"></i> Logout</a>
             {% else %}
-                <div>
-                    <a href="{% url 'authapp:login' %}" class="btn btn-outline-secondary">Login</a>
-                    <a href="{% url 'authapp:register' %}" class="btn btn-info ">Register</a>
-                </div>
+                <a href="{% url 'authapp:login' %}" class="btn btn-outline-secondary">Login</a>
+                <a href="{% url 'authapp:register' %}" class="btn btn-outline-info">Register</a>
             {% endif %}
         </span>
     </div>

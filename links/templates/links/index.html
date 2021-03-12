@@ -1,4 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Links{% endblock title %}
 {% block content %}
+    {% if links %}
+        <h1 style="width: 100%; text-align: center">Recent links</h1>
+        <br>
+        <div class="links">
+            {% for link in links %}
+                <h2><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h2>
+                <p style="font-size: .65em">{{ link.created_at }}</p>
+                <p><a href="{{ link.url }}">{{ link.url }}</a></p>
+                <ul style="font-size: .8em">
+                    {% for tag in link.tags.all %}
+                        <li>{{ tag.name }}</li>
+                    {% endfor %}
+                    <li>{{ link.get_level_display }}</li>
+                    <li>{{ link.get_type_display }}</li>
+                </ul>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No links have been posted so far : (</p>
+    {% endif %}
 {% endblock content %}

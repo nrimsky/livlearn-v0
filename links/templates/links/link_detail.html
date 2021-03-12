@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Link detail{% endblock title %}
+{% block content %}
+    <h1>{{ object.name }}</h1>
+    <p><a href="{{ object.url }}">{{ object.url }}</a></p>
+    <p class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</p>
+        <!-- LIKES -->
+    <div style="margin-top: 15px; margin-bottom: 15px">
+        {% if user.is_authenticated %}
+            <form action="{% url 'links:like' object.id %}" method="POST">
+                {% csrf_token %}
+                {% if post_is_liked %}
+                    <button type="submit" name="like_id" value="{{ object.id }}" class="btn btn-outline-dark">Unlike <i class="fas fa-heart-broken"></i></button>
+                {% else %}
+                    <button type="submit" name="like_id" value="{{ object.id }}" class="btn btn-outline-primary">Like <i class="fas fa-heart"></i></button>
+                {% endif %}
+            </form>
+        {% else %}
+            <a class="btn btn-outline-info" href="{% url 'authapp:login' %}?next={{ request.path }}">Login to like this resource!</a><br>
+        {% endif %}
+    </div>
+    <h2>Tags:</h2>
+    <ul>
+        {% for tag in object.tags.all %}
+            <li>{{ tag.name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Level:</h2>
+    <p>{{ object.get_level_display }}</p>
+    <h2>Category:</h2>
+    <p>{{ object.get_type_display }}</p>
+    <h2>Description:</h2>
+    <p>{{ object.description }}</p>
+    <p style="font-size: .7em">Link posted at {{ object.created_at }}</p>
+
+
+{% endblock content %}

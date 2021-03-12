@@ -3,7 +3,7 @@
 {% block content %}
     <h1>{{ welcome }}</h1>
     <div>
-        <a href="{% url 'authapp:edit' %}" class="btn btn-primary">Edit Your Profile</a> or
-        <a href="{% url 'authapp:password_change' %}" class="btn btn-warning">Change your password</a>
+        <a href="{% url 'authapp:edit' %}" class="btn btn-outline-secondary"><i class="far fa-envelope-open"></i> Change email</a> or
+        <a href="{% url 'authapp:password_change' %}" class="btn btn-outline-danger"><i class="fas fa-key"></i> Change password</a>
     </div>
 {% endblock content %}
