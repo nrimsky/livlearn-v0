@@ -1,23 +1,47 @@
 from django.db import models
 from django.conf import settings
+from django.db.models import Count
+
+class LinkQuerySet(models.QuerySet):
+    def search(self, **kwargs):
+        qs = self
+        qs = qs.order_by('-created_at')
+        if kwargs.get('q', ''):
+            qs = qs.filter(models.Q(name__icontains=kwargs['q']) | models.Q(description__icontains=kwargs['q']) | models.Q(tags__name__icontains=kwargs['q']))
+        if kwargs.get('level', []):
+            if "AN" not in kwargs['level'] and len(kwargs['level']) != 0:
+                levels = kwargs['level']
+                levels.append("AN")
+                qs = qs.filter(level__in=levels)
+        if kwargs.get('type', []) and len(kwargs['type']) != 0:
+            qs = qs.filter(type__in=kwargs['type'])
+        if kwargs.get('tags', []) and len(kwargs['tags']) != 0:
+            qs = qs.filter(tags__in=kwargs['tags'])
+        return qs.distinct()
 
 
 class Link(models.Model):
+
+    objects = LinkQuerySet.as_manager()
+
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='link_like', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    ADVANCED = 'A'
-    INTERMEDIATE = 'I'
-    BEGINNER = 'B'
+    ADVANCED = 'AD'
+    INTERMEDIATE = 'IN'
+    BEGINNER = 'BE'
+    ANY = "AN"
     LEVEL_CHOICES = [
         (ADVANCED, 'Advanced'),
         (INTERMEDIATE, 'Intermediate'),
-        (BEGINNER, 'Beginner')
+        (BEGINNER, 'Beginner'),
+        (ANY, 'Any level')
     ]
     level = models.CharField(
         max_length=2,
         choices=LEVEL_CHOICES,
-        blank=False
+        blank=False,
+        default=ANY
     )
 
     PODCAST = "PO"

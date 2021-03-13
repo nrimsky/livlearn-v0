@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Links{% endblock title %}
 {% block content %}
-    <div style="margin-bottom: 30px">
-        <form class="form-inline" action="{% url 'links:search_results' %}" method="get" style="width: 100%; max-width: 700px; margin: auto">
-            <div class="form-group" style="width: 75%; margin-right: 5%">
-                <label for="search" class="sr-only">Search</label>
-                <input class="form-control" name="q" type="text" placeholder="Search for a topic..." id="search" style="width: 100%">
-            </div>
-            <button type="submit" class="btn btn-outline-dark" style="width: 20%; min-width: 100px">Find resources!</button>
-        </form>
-    </div>
+    <form action="{% url 'links:index' %}" method="get">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-dark">Find resources!</button>
+    </form>
     {% if object_list %}
         <h1 style="width: 100%; text-align: center">{{ list_title }}</h1>
         <div class="links">
@@ -27,6 +22,6 @@
             {% endfor %}
         </div>
     {% else %}
-        <p>No links have been posted so far : (</p>
+        <p class="mt-2">No links found : (</p>
     {% endif %}
 {% endblock content %}

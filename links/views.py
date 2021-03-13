@@ -7,29 +7,41 @@ from django.urls import reverse
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.db.models import Q
+from .forms import SearchForm
 
 
-def index(request):
-    latest_links = Link.objects.order_by('-created_at')[:5]
-    template = loader.get_template('links/index.html')
-    return HttpResponse(template.render({'object_list': latest_links, "list_title": "Recent links posted"}, request))
+# def index(request):
+#     latest_links = Link.objects.order_by('-created_at')[:5]
+#     template = loader.get_template('links/index.html')
+#     return HttpResponse(template.render({'object_list': latest_links, "list_title": "Recent links posted"}, request))
+#
+
+def search_view(request):
+    form = SearchForm(request.GET)
+    list_title = "Recently posted links"
+    if form.is_valid():
+        list_title = "Search results"
+        links = Link.objects.search(**form.cleaned_data)
+    else:
+        links = Link.objects.order_by('-created_at')[:5]
+    return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title})
 
 
-class SearchResultsView(ListView):
-    model = Link
-    template_name = 'links/index.html'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Link.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
-        )
-        return object_list
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["list_title"] = "Search results"
-        return context
+# class SearchResultsView(ListView):
+#     model = Link
+#     template_name = 'links/index.html'
+#
+#     def get_queryset(self):
+#         query = self.request.GET.get('q')
+#         object_list = Link.objects.filter(
+#             Q(name__icontains=query) | Q(description__icontains=query)
+#         )
+#         return object_list
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["list_title"] = "Search results"
+#         return context
 
 class LinkDetailView(DetailView):
 
