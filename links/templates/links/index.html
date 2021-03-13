@@ -24,4 +24,13 @@
     {% else %}
         <p class="mt-2">No links found : (</p>
     {% endif %}
+    <script>
+        const l = document.getElementById("id_level");
+        multi(l);
+        const ty = document.getElementById("id_type");
+        multi(ty);
+        const ta = document.getElementById("id_tags");
+        multi(ta);
+    </script>
+
 {% endblock content %}
