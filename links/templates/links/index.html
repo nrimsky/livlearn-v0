@@ -6,15 +6,15 @@
     {% endif %}
     <form class="search-form" action="{% url 'links:index' %}" method="get">
         <div class="multi_selects">
-            <div class="resource_type_wrapper">
-                {{ form.type.errors }}
-                {{ form.type.label_tag }}
-                {{ form.type }}
-            </div>
             <div class="tags_wrapper">
                 {{ form.tags.errors }}
                 {{ form.tags.label_tag }}
                 {{ form.tags }}
+            </div>
+            <div class="resource_type_wrapper">
+                {{ form.type.errors }}
+                {{ form.type.label_tag }}
+                {{ form.type }}
             </div>
         </div>
         <div class="experience_level_wrapper">

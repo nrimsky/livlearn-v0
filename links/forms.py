@@ -3,8 +3,8 @@ from .models import Tag, Link
 
 
 class SearchForm(forms.Form):
-    type = forms.MultipleChoiceField(label='Resource type', choices=Link.TYPE_CHOICES, required=False)
-    tags = forms.ModelMultipleChoiceField(label='Choose tags', queryset=Tag.objects.all(), required=False)
+    type = forms.MultipleChoiceField(label='Filter by resource type', choices=Link.TYPE_CHOICES, required=False)
+    tags = forms.ModelMultipleChoiceField(label='Filter by topic', queryset=Tag.objects.all(), required=False)
     level = forms.ChoiceField(label='Experience level', choices=Link.LEVEL_CHOICES, required=False)
 
     def clean(self):

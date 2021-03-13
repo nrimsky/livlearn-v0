@@ -2,7 +2,7 @@ from django.http import request
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistration, UserEditForm
-
+from links.models import Link
 
 # Create your views here.
 
@@ -10,7 +10,8 @@ from .forms import UserRegistration, UserEditForm
 def dashboard(request):
 
     context = {
-        "welcome": "Welcome to your space on How Do I Learn That"
+        "welcome": "Welcome to your space on How Do I Learn That",
+        "links": request.user.link_like.all()
     }
     return render(request, 'authapp/dashboard.html', context=context)
 

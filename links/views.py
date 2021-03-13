@@ -27,7 +27,7 @@ def search_view(request):
         links = Link.objects.search(**form.cleaned_data)
         searched = True
     else:
-        links = Link.objects.order_by('-created_at')[:5]
+        links = Link.objects.filter(approved=True).order_by('-created_at')[:5]
     return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title, "searched": searched})
 
 

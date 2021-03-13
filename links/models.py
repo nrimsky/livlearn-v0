@@ -8,6 +8,7 @@ from django.db.models import Count
 class LinkQuerySet(models.QuerySet):
     def search(self, **kwargs):
         qs = self
+        qs = qs.filter(approved=True)
         qs = qs.order_by('-created_at')
         if kwargs.get('level', []):
             if "AN" not in kwargs['level']:
@@ -21,6 +22,7 @@ class LinkQuerySet(models.QuerySet):
 
 class Link(models.Model):
 
+    approved = models.BooleanField(default=False, blank=False, null=False)
     objects = LinkQuerySet.as_manager()
 
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='link_like', blank=True)
