@@ -15,3 +15,25 @@
     margin: auto;
     max-width: 700px;
 }
+
+input#id_q {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+label[for=id_q] {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding: 1rem;
+}
+
+select {
+    max-width: 700px;
+    margin: auto;
+}
