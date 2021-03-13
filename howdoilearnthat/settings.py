@@ -1,9 +1,6 @@
 from pathlib import Path
 import os
 
-# python manage.py makemigrations
-# python manage.py migrate
-# python manage.py createsuperuser
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,7 +115,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 
-LOGIN_REDIRECT_URL = 'authapp:dashboard'
+LOGIN_REDIRECT_URL = 'links:index'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 

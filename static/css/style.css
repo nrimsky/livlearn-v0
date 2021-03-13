@@ -1,6 +1,7 @@
 .bg-gray {
     background-color: lightgray;
 }
+
 .main {
     background-color: white;
 }
@@ -16,24 +17,82 @@
     max-width: 700px;
 }
 
-input#id_q {
-    display: block;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-    margin-bottom: 1rem;
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 150;
 }
 
-label[for=id_q] {
-    display: block;
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+.bold-text {
+    font-weight: 600;
+}
+
+.experience_level_wrapper {
+    display: flex;
+    margin: 15px 0;
+}
+
+.experience_level_wrapper select {
+    flex: 1 1 auto;
+    margin-left: 15px;
+}
+
+.resource_type_wrapper {
+    width: 50%;
+    display: inline;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.tags_wrapper {
+    width: 50%;
+    display: inline;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.multi_selects {
+    display: flex;
     width: 100%;
-    text-align: center;
-    margin: auto;
-    padding: 1rem;
 }
 
-select {
-    max-width: 700px;
-    margin: auto;
+.search-form button.btn {
+    margin: 15px auto;
+    width: 80%;
 }
+
+
+form button.btn {
+    font-weight: 600;
+}
+
+.search-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+@media (max-width: 765px) {
+
+    .resource_type_wrapper {
+        width: 100%;
+        display: block;
+    }
+
+    .tags_wrapper {
+        width: 100%;
+        display: block;
+    }
+
+    .multi_selects {
+        display: block;
+        width: 100%;
+    }
+
+}
+

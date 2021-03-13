@@ -8,8 +8,9 @@ from .forms import UserRegistration, UserEditForm
 
 @login_required
 def dashboard(request):
+
     context = {
-        "welcome": "Welcome to your dashboard"
+        "welcome": "Welcome to your space on How Do I Learn That"
     }
     return render(request, 'authapp/dashboard.html', context=context)
 

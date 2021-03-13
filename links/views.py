@@ -16,15 +16,19 @@ from .forms import SearchForm
 #     return HttpResponse(template.render({'object_list': latest_links, "list_title": "Recent links posted"}, request))
 #
 
+
+
 def search_view(request):
     form = SearchForm(request.GET)
     list_title = "Recently posted links"
+    searched = False
     if form.is_valid():
         list_title = "Search results"
         links = Link.objects.search(**form.cleaned_data)
+        searched = True
     else:
         links = Link.objects.order_by('-created_at')[:5]
-    return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title})
+    return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title, "searched": searched})
 
 
 # class SearchResultsView(ListView):

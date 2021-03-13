@@ -1,18 +1,17 @@
 from django.db import models
 from django.conf import settings
+import operator
+from functools import reduce
 from django.db.models import Count
+
 
 class LinkQuerySet(models.QuerySet):
     def search(self, **kwargs):
         qs = self
         qs = qs.order_by('-created_at')
-        if kwargs.get('q', ''):
-            qs = qs.filter(models.Q(name__icontains=kwargs['q']) | models.Q(description__icontains=kwargs['q']) | models.Q(tags__name__icontains=kwargs['q']))
         if kwargs.get('level', []):
-            if "AN" not in kwargs['level'] and len(kwargs['level']) != 0:
-                levels = kwargs['level']
-                levels.append("AN")
-                qs = qs.filter(level__in=levels)
+            if "AN" not in kwargs['level']:
+                qs = qs.filter(level__in=[kwargs['level'], "AN"])
         if kwargs.get('type', []) and len(kwargs['type']) != 0:
             qs = qs.filter(type__in=kwargs['type'])
         if kwargs.get('tags', []) and len(kwargs['tags']) != 0:
@@ -32,10 +31,10 @@ class Link(models.Model):
     BEGINNER = 'BE'
     ANY = "AN"
     LEVEL_CHOICES = [
-        (ADVANCED, 'Advanced'),
-        (INTERMEDIATE, 'Intermediate'),
+        (ANY, 'Any level'),
         (BEGINNER, 'Beginner'),
-        (ANY, 'Any level')
+        (INTERMEDIATE, 'Intermediate'),
+        (ADVANCED, 'Advanced')
     ]
     level = models.CharField(
         max_length=2,

@@ -1,12 +1,31 @@
 {% extends "base.html" %}
 {% block title %}Links{% endblock title %}
 {% block content %}
-    <form action="{% url 'links:index' %}" method="get">
-        {{ form.as_p }}
+    {% if searched %}
+        <p id="searched" style="height: 0"></p>
+    {% endif %}
+    <form class="search-form" action="{% url 'links:index' %}" method="get">
+        <div class="multi_selects">
+            <div class="resource_type_wrapper">
+                {{ form.type.errors }}
+                {{ form.type.label_tag }}
+                {{ form.type }}
+            </div>
+            <div class="tags_wrapper">
+                {{ form.tags.errors }}
+                {{ form.tags.label_tag }}
+                {{ form.tags }}
+            </div>
+        </div>
+        <div class="experience_level_wrapper">
+            {{ form.level.errors }}
+            {{ form.level.label_tag }}
+            {{ form.level }}
+        </div>
         <button type="submit" class="btn btn-outline-dark">Find resources!</button>
     </form>
     {% if object_list %}
-        <h1 style="width: 100%; text-align: center">{{ list_title }}</h1>
+        <h1 style="width: 100%; text-align: center" id="results">{{ list_title }}</h1>
         <div class="links">
             {% for link in object_list %}
                 <h2><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h2>
@@ -25,12 +44,17 @@
         <p class="mt-2">No links found : (</p>
     {% endif %}
     <script>
-        const l = document.getElementById("id_level");
-        multi(l);
         const ty = document.getElementById("id_type");
         multi(ty);
         const ta = document.getElementById("id_tags");
         multi(ta);
+
+        if (document.getElementById("searched")) {
+            console.log("HELLO")
+            const searchResults = document.getElementById("results");
+            searchResults.scrollIntoView();
+        }
+
     </script>
 
 {% endblock content %}
