@@ -23,6 +23,8 @@ else:
     EMAIL_USE_TLS = True
     EMAIL_USE_SSL = False
     DEFAULT_FROM_EMAIL = 'donotreply@howshouldilearn.com'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
