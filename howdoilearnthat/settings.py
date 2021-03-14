@@ -14,6 +14,7 @@ if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
     EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 else:
+    SECRET_KEY = os.getenv("SECRET_KEY")
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp-relay.sendinblue.com'
     EMAIL_PORT = '587'
