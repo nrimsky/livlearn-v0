@@ -123,7 +123,7 @@ ul ol {
 }
 
 dt {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 dd {
@@ -365,7 +365,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
 }
 
@@ -528,7 +528,7 @@ kbd {
 kbd kbd {
   padding: 0;
   font-size: 100%;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 pre {
@@ -4359,13 +4359,18 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  padding: .5rem 0;
 }
+
+.navbar-brand a {
+  padding: 0;
+  margin: 0;
+}
+
 
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
@@ -4393,8 +4398,6 @@ input[type="button"].btn-block {
 
 .navbar-text {
   display: inline-block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 .navbar-collapse {
@@ -5132,7 +5135,7 @@ input[type="button"].btn-block {
   display: inline-block;
   padding: 0.25em 0.4em;
   font-size: 75%;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   text-align: center;
   white-space: nowrap;
@@ -5318,7 +5321,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-link {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .alert-dismissible {
@@ -5869,7 +5872,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 .close {
   float: right;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
@@ -10326,8 +10329,6 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .navbar-brand {
-  padding-top: .5rem;
-  font-size: inherit;
   text-transform: uppercase;
 }
 

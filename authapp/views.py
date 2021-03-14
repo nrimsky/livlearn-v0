@@ -16,6 +16,10 @@ def dashboard(request):
     return render(request, 'authapp/dashboard.html', context=context)
 
 
+def privacy(request):
+    return render(request, 'authapp/privacy.html', {})
+
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistration(request.POST or None)

@@ -5,15 +5,18 @@
 {% endblock title %}
 {% block content %}
 
-{% if form.errors %}
-    
-{% endif %}
-    
-<form action="" method="post" class="form container">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% buttons %}
-    <button type="submit" class="btn btn-info">Sign up</button>
-    {% endbuttons %}
-</form>
+    {% if form.errors %}
+
+    {% endif %}
+
+    <form action="" method="post" class="form container">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <p style="font-size: .65em">By clicking Sign Up, you agree to our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
+            Policy</a> and that you have read our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
+            Policy</a>.</p>
+        {% buttons %}
+            <button type="submit" class="btn btn-info">Sign up</button>
+        {% endbuttons %}
+    </form>
 {% endblock content %}

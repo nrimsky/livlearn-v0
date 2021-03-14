@@ -1,5 +1,5 @@
 from django.urls import path
-from authapp.views import edit, dashboard, register
+from authapp.views import edit, dashboard, register, privacy
 from django.urls import reverse_lazy
 from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetDoneView, PasswordResetView,
                                        PasswordResetCompleteView, PasswordResetConfirmView,
@@ -10,6 +10,7 @@ app_name = 'authapp'
 
 urlpatterns = [
     path('register/', register, name='register'),
+    path('privacy/', privacy, name='privacy'),
     path('edit/', edit, name='edit'),
     path('dashboard/', dashboard, name='dashboard'),
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),

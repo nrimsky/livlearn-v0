@@ -17,6 +17,20 @@
     max-width: 700px;
 }
 
+.likes-text {
+    margin: .9rem 0;
+    padding: 0;
+    font-size: .9rem;
+    line-height: .9rem;
+}
+
+.date-text {
+    margin: .4rem 0;
+    padding: 0;
+    font-size: .7rem;
+    line-height: .7rem;
+}
+
 a {
     font-weight: 600 !important;
 }
@@ -26,9 +40,6 @@ h1, h2, h3 {
     font-weight: 600;
 }
 
-.bold-text {
-    font-weight: 600;
-}
 
 .experience_level_wrapper {
     position: relative;

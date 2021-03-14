@@ -29,7 +29,8 @@
         <div class="links">
             {% for link in object_list %}
                 <h2><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h2>
-                <p style="font-size: .65em">{{ link.created_at }}</p>
+                <p class="likes-text">{{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</p>
+                <p class="date-text">{{ link.created_at }}</p>
                 <p><a href="{{ link.url }}">{{ link.url }}</a></p>
                 <ul style="font-size: .8em">
                     {% for tag in link.tags.all %}
