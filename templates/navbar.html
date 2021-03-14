@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand bold-text" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> How Do I Learn That?</a>
+    <a class="navbar-brand bold-text" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> How Should I Learn That?</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,14 +19,14 @@
                     <a class="nav-link mx-md-2 my-2 my-md-0" href="{% url 'authapp:dashboard' %}"><i class="fas fa-user-alt mr-2"></i> {{ user.email }}</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="{% url 'authapp:logout' %}" class="btn btn-outline-warning nav-link mx-md-2 my-2 my-md-0"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a href="{% url 'authapp:logout' %}" class="btn btn-outline-primary nav-link mx-md-2 my-2 my-md-0"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
             {% else %}
                 <li class="nav-item active">
-                    <a href="{% url 'authapp:login' %}" class="btn btn-outline-warning nav-link mx-md-2 my-2 my-md-0">Login</a>
+                    <a href="{% url 'authapp:login' %}" class="btn btn-outline-dark nav-link mx-md-2 my-2 my-md-0">Login</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="{% url 'authapp:register' %}" class="btn btn-outline-info nav-link mx-md-2 my-2 my-md-0">Register</a>
+                    <a href="{% url 'authapp:register' %}" class="btn btn-outline-primary nav-link mx-md-2 my-2 my-md-0">Register</a>
                 </li>
             {% endif %}
         </ul>

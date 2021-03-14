@@ -17,10 +17,10 @@
     max-width: 700px;
 }
 
-body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-weight: 150;
+a {
+    font-weight: 600 !important;
 }
+
 
 h1, h2, h3 {
     font-weight: 600;
@@ -31,13 +31,29 @@ h1, h2, h3 {
 }
 
 .experience_level_wrapper {
-    display: flex;
-    margin: 15px 0;
+    position: relative;
+    display: block;
+    height: 50px;
+    max-width: 300px;
+    margin: auto;
+
+
+}
+
+.experience_level_wrapper label {
+    display: inline-block;
+   position: absolute;
+    left: 0;
+   top: 50%;
+   transform: translate(0, -50%);
 }
 
 .experience_level_wrapper select {
-    flex: 1 1 auto;
-    margin-left: 15px;
+    display: inline-block;
+    right: 0;
+   position: absolute;
+   top: 50%;
+   transform: translate(0, -50%);
 }
 
 .resource_type_wrapper {
@@ -97,6 +113,11 @@ form button.btn {
         display: block;
         width: 100%;
     }
+
+    input.search-input {
+        font-size: .8rem !important;
+    }
+
 
 }
 

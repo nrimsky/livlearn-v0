@@ -10,7 +10,7 @@ from links.models import Link
 def dashboard(request):
 
     context = {
-        "welcome": "Welcome to your space on How Do I Learn That",
+        "welcome": "Welcome to your space on How Should I Learn That",
         "links": request.user.link_like.all()
     }
     return render(request, 'authapp/dashboard.html', context=context)
