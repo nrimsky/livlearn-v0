@@ -1,22 +1,29 @@
 from pathlib import Path
 import os
 
+import django_heroku
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+DEBUG = False
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pjx@&_p=!sxc1+c)^8y6%oka2au=acj2a&0bhp6h%rzto_t-cq'
+if DEBUG:
+    SECRET_KEY = 'pjx@&_p=!sxc1+c)^8y6%oka2au=acj2a&0bhp6h%rzto_t-cq'
+    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp-relay.sendinblue.com'
+    EMAIL_PORT = '587'
+    EMAIL_HOST_USER = 'nina@toilets4london.com'
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
+    EMAIL_USE_TLS = True
+    EMAIL_USE_SSL = False
+    DEFAULT_FROM_EMAIL = 'donotreply@howshouldilearn.com'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -119,8 +126,7 @@ LOGIN_REDIRECT_URL = 'links:index'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
-
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
-
 AUTH_USER_MODEL = 'authapp.User'
+
+if not DEBUG:
+    django_heroku.settings(locals())
