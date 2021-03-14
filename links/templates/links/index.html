@@ -32,21 +32,28 @@
             Suggest a resource</a>
     </form>
     {% if page_obj %}
-        <h2 style="width: 100%; text-align: center" id="results">{{ list_title }}</h2>
-        <div class="links">
+        <h2 class="mt-4" id="results">{{ list_title }}</h2>
+        <div class="row my-4">
             {% for link in page_obj %}
-                <h3><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h3>
-                <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }}
-                    Like{{ link.number_of_likes|pluralize }}</p>
-                <p class="date-text">{{ link.created_at }}</p>
-                <p><a href="{{ link.url }}">{{ link.url }}</a></p>
-                <ul style="font-size: .8em">
-                    {% for tag in link.tags.all %}
-                        <li>{{ tag.name }}</li>
-                    {% endfor %}
-                    <li>{{ link.get_level_display }}</li>
-                    <li>{{ link.get_type_display }}</li>
-                </ul>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <h3 class="card-header h5">{{ link.name }}</h3>
+                        <div class="card-body d-flex flex-column">
+                            <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</p>
+                            <ul class="card-text">
+                                {% for tag in link.tags.all %}
+                                    <li>{{ tag.name }}</li>
+                                {% endfor %}
+                                <li>{{ link.get_level_display }}</li>
+                                <li>{{ link.get_type_display }}</li>
+                            </ul>
+                            <div class="mt-auto flex-row-lg d-flex-lg">
+                                <a href="{% url 'links:detail' link.id %}" class="btn btn-outline-info mt-2 mr-lg-3 ">More details</a>
+                                <a href="{{ link.url }}" class="btn btn-outline-primary mt-2">Access resource</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
         {% if is_paginated %}

@@ -1,37 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Link detail{% endblock title %}
 {% block content %}
-    <h1>{{ object.name }}</h1>
-    <p><a href="{{ object.url }}">{{ object.url }}</a></p>
-    <p class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</p>
-        <!-- LIKES -->
-    <div style="margin-top: 15px; margin-bottom: 15px">
-        {% if user.is_authenticated %}
-            <form action="{% url 'links:like' object.id %}" method="POST">
-                {% csrf_token %}
-                {% if post_is_liked %}
-                    <button type="submit" name="like_id" value="{{ object.id }}" class="btn btn-outline-dark">Unlike <i class="fas fa-heart-broken"></i></button>
+    <div class="card text-center">
+        <h2 class="card-header h3">{{ object.name }}</h2>
+        <div class="card-body">
+            <p class="card-title h5"><i class="fas fa-heart"></i> {{ object.number_of_likes }} Like{{ object.number_of_likes|pluralize }}</p>
+            <div class="my-3">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'links:like' object.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if post_is_liked %}
+                            <button type="submit" name="like_id" value="{{ object.id }}" class="btn btn-outline-dark">Unlike <i class="fas fa-heart-broken"></i></button>
+                        {% else %}
+                            <button type="submit" name="like_id" value="{{ object.id }}" class="btn btn-outline-primary">Like <i class="fas fa-heart"></i></button>
+                        {% endif %}
+                    </form>
                 {% else %}
-                    <button type="submit" name="like_id" value="{{ object.id }}" class="btn btn-outline-primary">Like <i class="fas fa-heart"></i></button>
+                    <a class="btn btn-outline-info" href="{% url 'authapp:login' %}?next={{ request.path }}">Login to like this resource!</a><br>
                 {% endif %}
-            </form>
-        {% else %}
-            <a class="btn btn-outline-info" href="{% url 'authapp:login' %}?next={{ request.path }}">Login to like this resource!</a><br>
-        {% endif %}
+            </div>
+            <p class="card-text">{{ object.description }}</p>
+            <p>
+            <ul class="card-text">
+                {% for tag in link.tags.all %}
+                    <li>{{ tag.name }}</li>
+                {% endfor %}
+            </ul>
+            </p>
+            <p class="card-title h5">Level:</p>
+            <p class="card-text">{{ object.get_level_display }}</p>
+            <p class="card-title h5">Category:</p>
+            <p class="card-text">{{ object.get_type_display }}</p>
+            <a href="{{ object.url }}" class="btn btn-primary">Check out resource</a>
+        </div>
+        <div class="card-footer text-muted">Link posted at {{ object.created_at }}</div>
     </div>
-    <h2>Tags:</h2>
-    <ul>
-        {% for tag in object.tags.all %}
-            <li>{{ tag.name }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Level:</h2>
-    <p>{{ object.get_level_display }}</p>
-    <h2>Category:</h2>
-    <p>{{ object.get_type_display }}</p>
-    <h2>Description:</h2>
-    <p>{{ object.description }}</p>
-    <p style="font-size: .7em">Link posted at {{ object.created_at }}</p>
 
-
+    <p class="mt-3"><a href="javascript:history.go(-1)">Back</a></p>
 {% endblock content %}
