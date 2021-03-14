@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load my_tags %}
 {% block title %}Links{% endblock title %}
 {% block content %}
     <h1 class="hsil-title d-none d-sm-block h2">How should I learn <span id="typewriter" class="blue"></span>?</h1>
-    <p>Do you want to start learning something new, but don't know where to start? Find the <span class="emph">best learning resources</span> on the internet with our <span class="emph">hand curated database</span> of amazing courses, videos, books and more!</p>
+    <p>Do you want to start learning something new, but don't know where to start? Find the <span class="emph">best learning resources</span>
+        on the internet with our <span class="emph">hand curated database</span> of amazing courses, videos, books and
+        more!</p>
     {% if searched %}
         <p id="searched" style="height: 0"></p>
     {% endif %}
-    <form class="search-form" action="{% url 'links:index' %}" method="get">
+    <form class="search-form" action="" method="get">
         <div class="multi_selects">
             <div class="tags_wrapper">
                 {{ form.tags.errors }}
@@ -25,14 +28,16 @@
             {{ form.level }}
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Find resources!</button>
-        <a href="{% url 'links:suggest' %}" class="btn btn-outline-info suggest-button"><i class="fas fa-plus"></i> Suggest a resource</a>
+        <a href="{% url 'links:suggest' %}" class="btn btn-outline-info suggest-button"><i class="fas fa-plus"></i>
+            Suggest a resource</a>
     </form>
-    {% if object_list %}
+    {% if page_obj %}
         <h2 style="width: 100%; text-align: center" id="results">{{ list_title }}</h2>
         <div class="links">
-            {% for link in object_list %}
+            {% for link in page_obj %}
                 <h3><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h3>
-                <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</p>
+                <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }}
+                    Like{{ link.number_of_likes|pluralize }}</p>
                 <p class="date-text">{{ link.created_at }}</p>
                 <p><a href="{{ link.url }}">{{ link.url }}</a></p>
                 <ul style="font-size: .8em">
@@ -44,6 +49,25 @@
                 </ul>
             {% endfor %}
         </div>
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?{% param_replace page=1 %}">First</a>
+                {% if page_obj.previous_page_number != 1 %}
+                    <a href="?{% param_replace page=page_obj.previous_page_number %}">Previous</a>
+                {% endif %}
+            {% endif %}
+
+            Page {{ page_obj.number }} of {{ paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                {% if page_obj.next_page_number != paginator.num_pages %}
+                    <a href="?{% param_replace page=page_obj.next_page_number %}">Next</a>
+                {% endif %}
+                <a href="?{% param_replace page=paginator.num_pages %}">Last</a>
+            {% endif %}
+
+            <p>Results {{ page_obj.start_index }}—{{ page_obj.end_index }}</p>
+        {% endif %}
     {% else %}
         <p class="mt-2">No links found : (</p>
     {% endif %}

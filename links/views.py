@@ -4,21 +4,35 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.detail import DetailView
 from .forms import SearchForm, LinkForm
+from django.views.generic import ListView
 
 
-def search_view(request):
-    form = SearchForm(request.GET)
-    list_title = "Recently posted links"
-    searched = False
-    all_tags = [tag.name for tag in Tag.objects.all()]
-    if form.is_valid():
-        list_title = "Search results"
-        links = Link.objects.search(**form.cleaned_data)
-        searched = True
-    else:
-        links = Link.objects.filter(approved=True).order_by('-created_at')[:5]
-    return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title, "searched": searched, "all_tags": all_tags})
+class SearchList(ListView):
+    model = Link
+    template_name = "links/index.html"
+    paginate_by = 2
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.search(**form.cleaned_data)
+        else:
+            return queryset.filter(approved=True).order_by('-created_at')[:5]
+
+    def get_context_data(self, **kwargs):
+        searched = False
+        list_title = "Recently posted links"
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            searched = True
+            list_title = "Search results"
+        context = super(SearchList, self).get_context_data(**kwargs)
+        context['list_title'] = list_title
+        context['searched'] = searched
+        context['all_tags'] = [tag.name for tag in Tag.objects.all()]
+        context['form'] = form
+        return context
 
 
 class LinkDetailView(DetailView):

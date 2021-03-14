@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load my_tags %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
     <h1>{{ welcome }}</h1>
@@ -8,12 +9,13 @@
         <a href="{% url 'authapp:password_change' %}" class="btn btn-outline-danger"><i class="fas fa-key"></i> Change
             password</a>
     </div>
-    {% if links %}
-        <h2 class="mt-4 mb-2">Your liked resources</h2>
-        <div class="my-4 ml-3">
-            {% for link in links %}
+    {% if page_obj %}
+        <h2 style="width: 100%; text-align: center" id="results">{{ list_title }}</h2>
+        <div class="links">
+            {% for link in page_obj %}
                 <h3><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h3>
-                <p style="font-size: .65em">{{ link.created_at }}</p>
+                <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }} liked this</p>
+                <p class="date-text">{{ link.created_at }}</p>
                 <p><a href="{{ link.url }}">{{ link.url }}</a></p>
                 <ul style="font-size: .8em">
                     {% for tag in link.tags.all %}
@@ -24,6 +26,27 @@
                 </ul>
             {% endfor %}
         </div>
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?{% param_replace page=1 %}">First</a>
+                {% if page_obj.previous_page_number != 1 %}
+                    <a href="?{% param_replace page=page_obj.previous_page_number %}">Previous</a>
+                {% endif %}
+            {% endif %}
+
+            Page {{ page_obj.number }} of {{ paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                {% if page_obj.next_page_number != paginator.num_pages %}
+                    <a href="?{% param_replace page=page_obj.next_page_number %}">Next</a>
+                {% endif %}
+                <a href="?{% param_replace page=paginator.num_pages %}">Last</a>
+            {% endif %}
+
+            <p>Results {{ page_obj.start_index }}—{{ page_obj.end_index }}</p>
+        {% endif %}
+    {% else %}
+        <p class="mt-2">You haven't liked any resources yet</p>
     {% endif %}
 
 {% endblock content %}

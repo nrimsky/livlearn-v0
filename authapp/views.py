@@ -1,19 +1,22 @@
-from django.http import request
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistration, UserEditForm
 from links.models import Link
+from django.views.generic import ListView
 
-# Create your views here.
 
-@login_required
-def dashboard(request):
+class Dashboard(ListView):
+    model = Link
+    template_name = "authapp/dashboard.html"
+    paginate_by = 2
 
-    context = {
-        "welcome": "Welcome to your space on How Should I Learn That",
-        "links": request.user.link_like.all()
-    }
-    return render(request, 'authapp/dashboard.html', context=context)
+    def get_queryset(self):
+        return self.request.user.link_like.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(Dashboard, self).get_context_data(**kwargs)
+        context['welcome'] = "Welcome to your space on How Should I Learn That"
+        return context
 
 
 def privacy(request):
