@@ -1,51 +1,25 @@
 from django.shortcuts import get_object_or_404, render
-from django.template import loader
-from django.http import HttpResponse
-from .models import Link
+from .models import Link, Tag
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.detail import DetailView
-from django.views.generic import ListView
-from django.db.models import Q
-from .forms import SearchForm
-
-
-# def index(request):
-#     latest_links = Link.objects.order_by('-created_at')[:5]
-#     template = loader.get_template('links/index.html')
-#     return HttpResponse(template.render({'object_list': latest_links, "list_title": "Recent links posted"}, request))
-#
-
+from .forms import SearchForm, LinkForm
 
 
 def search_view(request):
     form = SearchForm(request.GET)
     list_title = "Recently posted links"
     searched = False
+    all_tags = [tag.name for tag in Tag.objects.all()]
     if form.is_valid():
         list_title = "Search results"
         links = Link.objects.search(**form.cleaned_data)
         searched = True
     else:
         links = Link.objects.filter(approved=True).order_by('-created_at')[:5]
-    return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title, "searched": searched})
+    return render(request, "links/index.html", {"form": form, "object_list": links, "list_title": list_title, "searched": searched, "all_tags": all_tags})
 
 
-# class SearchResultsView(ListView):
-#     model = Link
-#     template_name = 'links/index.html'
-#
-#     def get_queryset(self):
-#         query = self.request.GET.get('q')
-#         object_list = Link.objects.filter(
-#             Q(name__icontains=query) | Q(description__icontains=query)
-#         )
-#         return object_list
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["list_title"] = "Search results"
-#         return context
 
 class LinkDetailView(DetailView):
 
@@ -71,3 +45,21 @@ def like(request, pk):
         link.likes.add(request.user)
 
     return HttpResponseRedirect(reverse('links:detail', args=[str(pk)]))
+
+
+def suggest(request):
+    if request.method == 'POST':
+        form = LinkForm(request.POST or None)
+        if form.is_valid():
+            new_link = form.save(commit=False)
+            new_link.approved = False
+            new_link.save()
+            return HttpResponseRedirect(reverse('links:index'))
+    else:
+        form = LinkForm()
+
+    context = {
+        "form": form
+    }
+
+    return render(request, 'links/suggest.html', context=context)

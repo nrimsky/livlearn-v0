@@ -9,7 +9,6 @@ class LinkQuerySet(models.QuerySet):
     def search(self, **kwargs):
         qs = self
         qs = qs.filter(approved=True)
-        qs = qs.order_by('-created_at')
         if kwargs.get('level', []):
             if "AN" not in kwargs['level']:
                 qs = qs.filter(level__in=[kwargs['level'], "AN"])
@@ -17,6 +16,7 @@ class LinkQuerySet(models.QuerySet):
             qs = qs.filter(type__in=kwargs['type'])
         if kwargs.get('tags', []) and len(kwargs['tags']) != 0:
             qs = qs.filter(tags__in=kwargs['tags'])
+        qs = qs.annotate(q_count=Count('likes')).order_by('-q_count')
         return qs.distinct()
 
 
@@ -68,7 +68,7 @@ class Link(models.Model):
 
     url = models.URLField(max_length=300, blank=False)
     description = models.TextField(max_length=500, blank=False)
-    name = models.TextField(max_length=100, blank=False)
+    name = models.CharField(max_length=100, blank=False)
     tags = models.ManyToManyField(
         to='links.Tag',
         related_name='links',

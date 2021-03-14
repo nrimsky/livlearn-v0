@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Links{% endblock title %}
 {% block content %}
+    <h1 class="hsil-title d-none d-sm-block h2">How should I learn <span id="typewriter" class="blue"></span>?</h1>
+    <p>Do you want to start learning something new, but don't know where to start? Find the <span class="emph">best learning resources</span> on the internet with our <span class="emph">hand curated database</span> of amazing courses, videos, books and more!</p>
     {% if searched %}
         <p id="searched" style="height: 0"></p>
     {% endif %}
@@ -8,28 +10,29 @@
         <div class="multi_selects">
             <div class="tags_wrapper">
                 {{ form.tags.errors }}
-                {{ form.tags.label_tag }}
+                <span class="bold-text">{{ form.tags.label_tag }}</span>
                 {{ form.tags }}
             </div>
             <div class="resource_type_wrapper">
                 {{ form.type.errors }}
-                {{ form.type.label_tag }}
+                <span class="bold-text">{{ form.type.label_tag }}</span>
                 {{ form.type }}
             </div>
         </div>
         <div class="experience_level_wrapper">
             {{ form.level.errors }}
-            {{ form.level.label_tag }}
+            <span class="bold-text">{{ form.level.label_tag }}</span>
             {{ form.level }}
         </div>
-        <button type="submit" class="btn btn-primary">Find resources!</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Find resources!</button>
+        <a href="{% url 'links:suggest' %}" class="btn btn-outline-info suggest-button"><i class="fas fa-plus"></i> Suggest a resource</a>
     </form>
     {% if object_list %}
-        <h1 style="width: 100%; text-align: center" id="results">{{ list_title }}</h1>
+        <h2 style="width: 100%; text-align: center" id="results">{{ list_title }}</h2>
         <div class="links">
             {% for link in object_list %}
-                <h2><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h2>
-                <p class="likes-text">{{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</p>
+                <h3><a href="{% url 'links:detail' link.id %}">{{ link.name }}</a></h3>
+                <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</p>
                 <p class="date-text">{{ link.created_at }}</p>
                 <p><a href="{{ link.url }}">{{ link.url }}</a></p>
                 <ul style="font-size: .8em">
@@ -45,16 +48,21 @@
         <p class="mt-2">No links found : (</p>
     {% endif %}
     <script>
-        const ty = document.getElementById("id_type");
-        multi(ty);
+
         const ta = document.getElementById("id_tags");
         multi(ta);
 
         if (document.getElementById("searched")) {
-            console.log("HELLO")
             const searchResults = document.getElementById("results");
             searchResults.scrollIntoView();
         }
+
+        new Typewriter('#typewriter', {
+            delay: 250,
+            strings: [{% for t in all_tags %} "{{ t }}", {% endfor %}],
+            autoStart: true,
+            loop: true
+        });
 
     </script>
 

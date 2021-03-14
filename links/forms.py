@@ -3,8 +3,8 @@ from .models import Tag, Link
 
 
 class SearchForm(forms.Form):
-    type = forms.MultipleChoiceField(label='Filter by resource type', choices=Link.TYPE_CHOICES, required=False)
-    tags = forms.ModelMultipleChoiceField(label='Filter by topic', queryset=Tag.objects.all(), required=False)
+    type = forms.MultipleChoiceField(label='Filter by resource type', choices=Link.TYPE_CHOICES, required=False, widget=forms.CheckboxSelectMultiple)
+    tags = forms.ModelMultipleChoiceField(label='What do you want to learn?', queryset=Tag.objects.all(), required=False)
     level = forms.ChoiceField(label='Experience level', choices=Link.LEVEL_CHOICES, required=False)
 
     def clean(self):
@@ -14,4 +14,10 @@ class SearchForm(forms.Form):
         tags = cleaned_data.get("tags")
         if len(level) == 0 and len(type) == 0 and len(tags) == 0:
             raise forms.ValidationError("No search or filter parameters specified")
+
+
+class LinkForm(forms.ModelForm):
+    class Meta:
+        model = Link
+        fields = ["name",  "url", "type", "description", "level"]
 

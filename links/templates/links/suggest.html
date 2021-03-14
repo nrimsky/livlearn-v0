@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}Suggest A Resource{% endblock title %}
+{% block content %}
+    <h1>Suggest a great learning resource for us to add to the database</h1>
+    <p>Please avoid self promotion or spam - all submissions are moderated</p>
+    <form action="" method="post" class="form container">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-info">Submit</button>
+        {% endbuttons %}
+    </form>
+
+
+{% endblock content %}
