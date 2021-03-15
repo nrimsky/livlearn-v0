@@ -2,15 +2,52 @@
 {% load bootstrap4 %}
 {% block title %}Suggest A Resource{% endblock title %}
 {% block content %}
-    <h1>Suggest a great learning resource for us to add to the database</h1>
-    <p>Please avoid self promotion or spam - all submissions are moderated</p>
-    <form action="" method="post" class="form container">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
-            <button type="submit" class="btn btn-info">Submit</button>
-        {% endbuttons %}
-    </form>
+    <div class="card">
+        <div class="card-header h5">
+            Suggest a great learning resource that everyone should know about
+        </div>
+        <div class="card-body">
+            <form action="" method="POST" class="form">
+                {% csrf_token %}
+                <div class="form-group suggest-form-description-group">
+                    {{ form.name.errors }}
+                    {{ form.name.label_tag }}
+                    <small class="form-text text-muted">A short but descriptive name, eg: Intro to Set Theory Youtube Series</small>
+                    <span class="submit-form-group">{{ form.name }}</span>
+                </div>
+                <div class="form-group suggest-form-description-group">
+                    {{ form.url.errors }}
+                    {{ form.url.label_tag }}
+                    <small class="form-text text-muted">Paste in a link to the resource</small>
+                    <span class="submit-form-group">{{ form.url }}</span>
+                </div>
+                <div class="form-group">
+                    {{ form.type.errors }}
+                    <span class="mr-3">{{ form.type.label_tag }}</span>
+                    <span class="submit-form-group">{{ form.type }}</span>
+
+                </div>
+                <div class="form-group suggest-form-description-group">
+                    {{ form.description.errors }}
+                    {{ form.description.label_tag }}
+                    <small class="form-text text-muted">Keep it short and sweet. Why is the resource useful? Who is it for? (We may edit your description before publishing)</small>
+                    <span class="submit-form-group">{{ form.description }}</span>
+
+                </div>
+                <div class="form-group">
+                    {{ form.level.errors }}
+                    <span class="mr-3">{{ form.level.label_tag }}</span>
+                    <span class="submit-form-group">{{ form.level }}</span>
+                </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            All submissions are carefully reviewed by our team before publishing to the database
+        </div>
+    </div>
+
+    <p class="mt-3"><a href="{{ saved_back_url }}">Back</a></p>
 
 
 {% endblock content %}

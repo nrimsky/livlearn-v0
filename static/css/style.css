@@ -162,6 +162,22 @@ form button.btn {
     margin-bottom: 30px;
 }
 
+.submit-form-group > textarea, .submit-form-group > input {
+    width: 100%;
+    max-height: 100px;
+    padding: 5px;
+}
+
+.suggest-form-description-group > label,  .suggest-form-description-group > small {
+    margin: 0;
+}
+
+.suggest-form-description-group > .submit-form-group {
+    margin-top: .7rem;
+    display: block;
+}
+
+
 @media (max-width: 765px) {
 
 

@@ -83,4 +83,10 @@ def suggest(request):
         "form": form
     }
 
+    saved_back_url = request.session.get("saved_back_url")
+    if saved_back_url:
+        context["saved_back_url"] = saved_back_url
+    else:
+        context["saved_back_url"] = reverse('links:index')
+
     return render(request, 'links/suggest.html', context=context)

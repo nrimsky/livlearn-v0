@@ -33,7 +33,7 @@
             <p class="card-text">{{ object.get_type_display }}</p>
             <a href="{{ object.url }}" class="btn btn-primary">Check out resource</a>
         </div>
-        <div class="card-footer text-muted">Link posted at {{ object.created_at }}</div>
+        <div class="card-footer text-muted">Posted on {{ object.created_at|date:"D d M Y" }}</div>
     </div>
 
     <p class="mt-3"><a href="{{ saved_back_url }}">Back</a></p>
