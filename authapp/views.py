@@ -8,9 +8,10 @@ from django.views.generic import ListView
 class Dashboard(ListView):
     model = Link
     template_name = "authapp/dashboard.html"
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
+        self.request.session['saved_back_url'] = self.request.get_full_path()
         return self.request.user.link_like.all()
 
     def get_context_data(self, **kwargs):

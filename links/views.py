@@ -10,13 +10,15 @@ from django.views.generic import ListView
 class SearchList(ListView):
     model = Link
     template_name = "links/index.html"
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
         form = SearchForm(self.request.GET)
+        self.request.session['saved_back_url'] = self.request.get_full_path()
         if form.is_valid():
             return queryset.search(**form.cleaned_data)
+
         else:
             return queryset.filter(approved=True).order_by('-created_at')[:5]
 
@@ -46,6 +48,11 @@ class LinkDetailView(DetailView):
         liked = False
         if likes_connected.likes.filter(id=self.request.user.id).exists():
             liked = True
+        saved_back_url = self.request.session.get("saved_back_url")
+        if saved_back_url:
+            data["saved_back_url"] = saved_back_url
+        else:
+            data["saved_back_url"] = reverse('links:index')
         data['number_of_likes'] = likes_connected.number_of_likes()
         data['post_is_liked'] = liked
         return data
