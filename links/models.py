@@ -1,7 +1,5 @@
 from django.db import models
 from django.conf import settings
-import operator
-from functools import reduce
 from django.db.models import Count
 
 
