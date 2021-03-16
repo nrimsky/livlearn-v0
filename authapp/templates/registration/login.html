@@ -3,40 +3,33 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-    <div class="">
+    <div>
         <div style="text-align: center;">
-            <h1>Login</h1>
+            <h1 class="my-4">Login</h1>
             {% if form.errors %}
-                <p> Your username and password didn't match. Please try again. </p>
-            {% else %}
-                <p>Welcome to How Should I Learn That! Use the following form to login.</p>
+                <p>Your username or password are incorrect. Please try again.</p>
             {% endif %}
         </div>
 
         <div class="col">
             <div class="row mx-auto">
-                <a class="btn btn-outline-primary mb-2 mx-auto" href="#">Login with Facebook</a>
+                <a class="btn btn-outline-primary mb-2 mx-auto" href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
             </div>
             <div class="row mx-auto">
-                <a class="btn btn-outline-primary mb-2 mx-auto" href="#">Login with Google</a>
-
-            </div>
-            <div class="row mx-auto">
-                <a class="btn btn-outline-primary mb-2 mx-auto" href="#">Login with LinkedIn</a>
-            </div>
-            <div class="row mx-auto">
-                <a class="btn btn-outline-primary mb-2 mx-auto" href="#">Login with Apple</a>
+                <a class="btn btn-outline-primary mb-2 mx-auto" href="{% url 'social:begin' 'facebook' %}">Login with Google</a>
             </div>
         </div>
 
+        <h2 class="h3 mt-3 mx-auto" style="text-align: center;">Login using email</h2>
         <form action="" method="post" class="form login-form">
-            <p><a href="{% url 'authapp:password_reset' %}">Forgotten your password?</a></p>
+
             {% csrf_token %}
             {% bootstrap_form form %}
             {% buttons %}
                 <input type="hidden" name="next" value="{{ next }}"/>
                 <button type="submit" class="btn btn-info">Login</button>
             {% endbuttons %}
+            <p><a href="{% url 'authapp:password_reset' %}">Forgotten your password?</a></p>
         </form>
     </div>
 {% endblock content %}

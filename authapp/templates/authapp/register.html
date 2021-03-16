@@ -5,16 +5,26 @@
 {% endblock title %}
 {% block content %}
 
-    <h1 class="h2 pb-4">Sign up to like and save your favourite resources</h1>
+    <h1 class="h2 mb-4">Sign up to like and save your favourite resources</h1>
+
+
+    <div class="col">
+        <div class="row mx-auto">
+            <a class="btn btn-outline-primary mb-2 mx-auto" href="{% url 'social:begin' 'facebook' %}">Sign up with Facebook</a>
+        </div>
+        <div class="row mx-auto">
+            <a class="btn btn-outline-primary mb-2 mx-auto" href="{% url 'social:begin' 'facebook' %}">Sign up with Google</a>
+        </div>
+    </div>
 
     {% if form.errors %}
-
     {% endif %}
-
+    <h2 class="h3 mb-4">Sign up using email</h2>
     <form action="" method="post" class="form container">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <p style="font-size: .65em">By clicking Sign Up, you agree to our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
+        <p style="font-size: .65em">By clicking Sign Up, you agree to our <a target="_blank"
+                                                                             href="{% url 'authapp:privacy' %}">Privacy
             Policy</a> and that you have read our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
             Policy</a>.</p>
         {% buttons %}
