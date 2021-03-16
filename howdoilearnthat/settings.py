@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
     SECRET_KEY = 'pjx@&_p=!sxc1+c)^8y6%oka2au=acj2a&0bhp6h%rzto_t-cq'
@@ -131,5 +131,21 @@ LOGOUT_URL = 'logout'
 
 AUTH_USER_MODEL = 'authapp.User'
 
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+if DEBUG:
+
+    SOCIAL_AUTH_FACEBOOK_KEY = YOUR_APP_KRY        # App ID
+    SOCIAL_AUTH_FACEBOOK_SECRET = YOUR_APP_SECRET  # App Secret
+else:
+    SOCIAL_AUTH_FACEBOOK_KEY = os.getenv("SOCIAL_AUTH_FACEBOOK_KEY")
+    SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv("SOCIAL_AUTH_FACEBOOK_SECRET")
+
 if not DEBUG:
     django_heroku.settings(locals())
+
