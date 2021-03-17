@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 
 class UserRegistration(UserCreationForm):
+    # additional field for email in form
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -14,8 +15,6 @@ class UserRegistration(UserCreationForm):
     def save(self, commit=True):
         user = super(UserRegistration, self).save(commit=False)
         user.email = self.cleaned_data['email']
-        user.password = self.cleaned_data['password1']
-        user.username = self.cleaned_data['username']
         if commit:
             user.save()
         return user
