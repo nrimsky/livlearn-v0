@@ -25,14 +25,11 @@ def privacy(request):
 
 
 def register(request):
+    # https://overiq.com/django-1-10/django-creating-users-using-usercreationform/
     if request.method == 'POST':
         form = UserRegistration(request.POST or None)
         if form.is_valid():
-            new_user = form.save(commit=False)
-            new_user.set_password(
-                form.cleaned_data.get('password')
-            )
-            new_user.save()
+            form.save()
             return render(request, 'authapp/register_done.html')
     else:
         form = UserRegistration()
