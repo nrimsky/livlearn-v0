@@ -1,24 +1,62 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
-{% block title %}Registration
+{% block title %}Sign up{% endblock title %}
 
-{% endblock title %}
 {% block content %}
+    <div class="card text-center form-card">
+        <h2 class="card-header h5">Sign up for your account</h2>
+        <div class="card-body">
+            <div class="col my-md-3 my-2">
+                <div class="row mx-auto">
+                    <a class="btn mb-2 mx-auto icon-button"
+                       href="{% url 'social:begin' 'google-oauth2' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             viewBox="0 0 48 48">
+                            <defs>
+                                <path id="a"
+                                      d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
+                            </defs>
+                            <clipPath id="b">
+                                <use xlink:href="#a" overflow="visible"></use>
+                            </clipPath>
+                            <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
+                            <path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
+                            <path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
+                            <path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
+                        </svg>
+                        Continue with Google</a>
+                </div>
+                <div class="row mx-auto">
+                    <a class="btn mb-2 mx-auto icon-button"
+                       href="{% url 'social:begin' 'facebook' %}">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0V48H25.5629V29.4586H19.314V21.8895H25.5629V15.5328C25.5629 10.9097 29.3106 7.16203 33.9337 7.16203H40.4665V13.9684H35.7919C34.323 13.9684 33.132 15.1593 33.132 16.6283V21.8896H40.349L39.3516 29.4587H33.132V48H48V0H0Z"
+                                  fill="#3A559F"></path>
+                        </svg>
+                        Continue with Facebook</a>
+                </div>
+            </div>
+            <div class="col my-md-3 my-2">
+                <p class="text-primary">Or use email</p>
+                <div>
+                    {% if form.errors %}
+                        <p>Your username or password are incorrect. Please try again.</p>
+                    {% endif %}
+                </div>
+                <form action="" method="post" class="form login-form text-left">
 
-    <h1 class="h2 pb-4">Sign up to like and save your favourite resources</h1>
-
-    {% if form.errors %}
-
-    {% endif %}
-
-    <form action="" method="post" class="form container">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <p style="font-size: .65em">By clicking Sign Up, you agree to our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
-            Policy</a> and that you have read our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
-            Policy</a>.</p>
-        {% buttons %}
-            <button type="submit" class="btn btn-info">Sign up</button>
-        {% endbuttons %}
-    </form>
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <p style="font-size: .65em">By clicking Sign Up, you agree to our <a target="_blank"
+                                                                                         href="{% url 'authapp:privacy' %}">Privacy
+                        Policy</a> and that you have read our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
+                        Policy</a>.</p>
+                    {% buttons %}
+                        <button type="submit" class="btn btn-info">Sign up</button>
+                    {% endbuttons %}
+                    <p>Already have an account? <a href="{% url 'authapp:login' %}">Log in</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

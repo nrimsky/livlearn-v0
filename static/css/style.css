@@ -30,7 +30,7 @@ a {
 }
 
 #content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
+  padding-bottom: 3.5rem;    /* Footer height */
 }
 
 #footer {
@@ -177,6 +177,10 @@ form button.btn {
     display: block;
 }
 
+.nav-link {
+    font-size: 15px;
+}
+
 
 @media (max-width: 765px) {
 
@@ -224,4 +228,34 @@ ul.card-text {
     display: block;
     margin: .2rem 0;
     padding: 0;
+}
+
+.btn > svg {
+    height: 30px;
+    padding: 5px;
+    width: 30px;
+    margin-left: 5px;
+}
+
+.btn.icon-button {
+    text-align: left;
+    padding: 5px;
+    width: 250px;
+    color: #222;
+    border-color: #222;
+}
+
+.btn.icon-button:hover {
+  background-color: #f8f9fa;
+}
+
+.form-card {
+    max-width: 600px;
+    margin: auto;
+}
+
+.footer-small {
+    width: 100%;
+    display: block;
+    text-align: center;
 }
