@@ -80,23 +80,21 @@
     {% else %}
         <p class="mt-2">No links found : (</p>
     {% endif %}
-    <script>
+{% endblock content %}
 
+{% block javascript %}
+    <script>
         const ta = document.getElementById("id_tags");
         multi(ta);
-
         if (document.getElementById("searched")) {
             const searchResults = document.getElementById("results");
             searchResults.scrollIntoView();
         }
-
         new Typewriter('#typewriter', {
             delay: 250,
             strings: [{% for t in all_tags %} "{{ t }}", {% endfor %}],
             autoStart: true,
             loop: true
         });
-
     </script>
-
-{% endblock content %}
+{% endblock javascript %}

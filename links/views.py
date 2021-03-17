@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views.generic.detail import DetailView
 from .forms import SearchForm, LinkForm
 from django.views.generic import ListView
+from django.http import JsonResponse
 
 
 class SearchList(ListView):
@@ -58,14 +59,18 @@ class LinkDetailView(DetailView):
         return data
 
 
-def like(request, pk):
-    link = get_object_or_404(Link, id=request.POST.get('like_id'))
-    if link.likes.filter(id=request.user.id).exists():
-        link.likes.remove(request.user)
-    else:
-        link.likes.add(request.user)
-
-    return HttpResponseRedirect(reverse('links:detail', args=[str(pk)]))
+def postLike(request):
+    # request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+        # get the form data
+        link = Link.objects.get(id=request.POST.get('like_id'))
+        if link:
+            if link.likes.filter(id=request.user.id).exists():
+                link.likes.remove(request.user)
+                return JsonResponse({"post_is_liked": False, "num_likes": link.likes.count()}, status=200)
+            else:
+                link.likes.add(request.user)
+                return JsonResponse({"post_is_liked": True, "num_likes": link.likes.count()}, status=200)
 
 
 def suggest(request):
