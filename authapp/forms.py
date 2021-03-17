@@ -14,6 +14,8 @@ class UserRegistration(UserCreationForm):
     def save(self, commit=True):
         user = super(UserRegistration, self).save(commit=False)
         user.email = self.cleaned_data['email']
+        user.password = self.cleaned_data['password1']
+        user.username = self.cleaned_data['username']
         if commit:
             user.save()
         return user
@@ -22,4 +24,4 @@ class UserRegistration(UserCreationForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("username", "first_name", "last_name", "email")
+        fields = ("username",)
