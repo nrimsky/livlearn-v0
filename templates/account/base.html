@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Description"
+          content="How Should I Learn is a curated collection of the best learning resources on a wide variety of topics. Discover the most popular and engaging educational videos, blogs, books and courses carefully chosen to optimise your learning journey.">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/multi.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+<div id="page-container">
+    <div id="content-wrap">
+        {% include "navbar.html" %}
+        <div class="container" style="padding-top: 20px">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+    <!-- https://mdbootstrap.com/docs/standard/navigation/footer/ -->
+    <footer id="footer">
+        <div class="text-center p-3 bg-light">
+            <small class="footer-small text-danger">🛠️️ How Should I Learn is currently in Alpha so the site may not be
+                up or fully functional 100% of the time</small>
+            <small class="footer-small">© 2021 Copyright <a class="text-dark" href="https://www.howshouldilearn.com/">howshouldilearn.com</a></small>
+            <small class="footer-small">📧 Contact info@howshouldilearn.com with any enquiries</small>
+            <small class="footer-small">Built with ❤️ 🐱 in London</small>
+        </div>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="{% static 'js/multi.min.js' %}"></script>
+    {% block javascript %}
+    {% endblock javascript %}
+</div>
+</body>
+
+</html>
