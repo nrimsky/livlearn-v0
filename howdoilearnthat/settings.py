@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     SECRET_KEY = 'pjx@&_p=!sxc1+c)^8y6%oka2au=acj2a&0bhp6h%rzto_t-cq'
