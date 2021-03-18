@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from .forms import UserRegistration, UserEditForm
 from links.models import Link
 from django.views.generic import ListView
+from allauth.account.decorators import verified_email_required
 
 
 class Dashboard(ListView):
@@ -22,35 +21,3 @@ class Dashboard(ListView):
 
 def privacy(request):
     return render(request, 'authapp/privacy.html', {})
-
-
-def register(request):
-    # https://overiq.com/django-1-10/django-creating-users-using-usercreationform/
-    if request.method == 'POST':
-        form = UserRegistration(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return render(request, 'authapp/register_done.html')
-    else:
-        form = UserRegistration()
-
-    context = {
-        "form": form
-    }
-
-    return render(request, 'authapp/register.html', context=context)
-
-
-@login_required
-def edit(request):
-    if request.method == 'POST':
-        user_form = UserEditForm(instance=request.user,
-                                 data=request.POST)
-        if user_form.is_valid():
-            user_form.save()
-    else:
-        user_form = UserEditForm(instance=request.user)
-    context = {
-        'form': user_form,
-    }
-    return render(request, 'authapp/edit.html', context=context)

@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
-{% block title %}Log in{% endblock title %}
+{% load socialaccount %}
+{% load i18n %}
+{% block title %}Sign up{% endblock title %}
 
 {% block content %}
     <div class="card text-center form-card">
-        <h2 class="card-header h5">Log in to How Should I Learn</h2>
+        <h2 class="card-header h5">Sign up for your account</h2>
         <div class="card-body">
             <div class="col my-md-3 my-2">
                 <div class="row mx-auto">
-                    <a class="btn mb-2 mx-auto icon-button" href="{% url 'social:begin' 'google-oauth2' %}">
+                    <a class="btn mb-2 mx-auto icon-button"
+                       href="{% provider_login_url "google" process="signup" %}">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                              viewBox="0 0 48 48">
                             <defs>
@@ -26,7 +29,8 @@
                         Continue with Google</a>
                 </div>
                 <div class="row mx-auto">
-                    <a class="btn mb-2 mx-auto icon-button" href="{% url 'social:begin' 'facebook' %}">
+                    <a class="btn mb-2 mx-auto icon-button"
+                       href="{% provider_login_url "google" process="signup" %}">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 0V48H25.5629V29.4586H19.314V21.8895H25.5629V15.5328C25.5629 10.9097 29.3106 7.16203 33.9337 7.16203H40.4665V13.9684H35.7919C34.323 13.9684 33.132 15.1593 33.132 16.6283V21.8896H40.349L39.3516 29.4587H33.132V48H48V0H0Z"
                                   fill="#3A559F"></path>
@@ -38,18 +42,25 @@
                 <p class="text-primary">Or use email</p>
                 <div>
                     {% if form.errors %}
-                        <p>Your username or password are incorrect. Please try again.</p>
+                        <p>Your username or password are invalid. Please try again.</p>
                     {% endif %}
                 </div>
-                <form action="" method="post" class="form login-form text-left">
+                <form action="{% url 'account_signup' %}" method="post" class="form login-form text-left signup"
+                      id="signup_form">
 
                     {% csrf_token %}
                     {% bootstrap_form form %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <p style="font-size: .65em">By clicking Sign Up, you agree to our <a target="_blank"
+                                                                                         href="{% url 'authapp:privacy' %}">Privacy
+                        Policy</a> and that you have read our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy
+                        Policy</a>.</p>
                     {% buttons %}
-                        <input type="hidden" name="next" value="{{ next }}"/>
-                        <button type="submit" class="btn btn-info">Log in</button>
+                        <button type="submit" class="btn btn-info">Sign up</button>
                     {% endbuttons %}
-                    <p><a href="{% url 'authapp:password_reset' %}">Forgotten your password?</a></p>
+                    <p>Already have an account? <a href="{{ login_url }}">Log in</a></p>
                 </form>
             </div>
         </div>

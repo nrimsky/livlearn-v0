@@ -21,7 +21,7 @@
                         {% endif %}
                     </form>
                 {% else %}
-                    <a class="btn btn-outline-info" href="{% url 'authapp:login' %}?next={{ request.path }}">Login to
+                    <a class="btn btn-outline-info" href="{% url 'account_login' %}?next={{ request.path }}">Login to
                         like this resource!</a><br>
                 {% endif %}
             </div>
@@ -69,9 +69,9 @@
                     const post_is_liked = JSON.parse(response["post_is_liked"]);
                     const num_likes = JSON.parse(response["num_likes"]);
                     if (post_is_liked) {
-                        $("#like-button").html('Unlike <i class="fas fa-heart-broken"></i>').prop('class', 'btn btn-outline-dark');
+                        $("#like-button").html('Unlike <i class="fas fa-heart-broken"></i>').prop('class', 'btn btn-outline-dark').blur();
                     } else {
-                        $("#like-button").html('Like <i class="fas fa-heart"></i>').prop('class', 'btn btn-outline-primary');
+                        $("#like-button").html('Like <i class="fas fa-heart"></i>').prop('class', 'btn btn-outline-primary').blur();
                     }
                     $("#num-likes").html('<i class="fas fa-heart"></i> '+num_likes+' Likes');
                 },

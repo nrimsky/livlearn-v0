@@ -38,12 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
     'import_export',
     'links',
     'authapp',
     'bootstrap4'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,9 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect'
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -129,14 +134,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
 
-LOGIN_REDIRECT_URL = 'links:index'
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-
-
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
+    'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -144,22 +143,45 @@ if DEBUG:
     from dotenv import load_dotenv
     load_dotenv()
 
-SOCIAL_AUTH_FACEBOOK_KEY = os.getenv("SOCIAL_AUTH_FACEBOOK_KEY")
-SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv("SOCIAL_AUTH_FACEBOOK_SECRET")
-
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email'] # add this
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       # add this
-  'fields': 'id, name, email'
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'email',
+        ],
+        'APP': {
+            'client_id': os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY"),
+            'secret': os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"),
+            'key': ''
+        }
+    },
+    'facebook': {
+        'SCOPE': [
+            'email',
+        ],
+        'APP': {
+            'client_id': os.getenv("SOCIAL_AUTH_FACEBOOK_KEY"),
+            'secret': os.getenv("SOCIAL_AUTH_FACEBOOK_SECRET"),
+            'key': ''
+        },
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
 }
-SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
-    ('name', 'name'),
-    ('email', 'email'),
-]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
+ACCOUNT_AUTHENTICATION_METHOD ="email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "How Should I Learn"
+LOGIN_REDIRECT_URL = 'links:index'
+LOGIN_URL = 'account_login'
+LOGOUT_URL = 'account_logout'
+ACCOUNT_SESSION_REMEMBER = True
+# ACCOUNT_SIGNUP_FORM_CLASS = "authapp.forms.CustomSignupForm"
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = False
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 
 if not DEBUG:
