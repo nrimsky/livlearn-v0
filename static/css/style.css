@@ -180,37 +180,6 @@ form button.btn {
     font-size: 15px;
 }
 
-button {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid #369;
-    padding: 0.375rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    color: #369;
-}
-
-button:hover {
-    text-decoration: none;
-    color: #fff;
-    background-color: #369;
-    border-color: #369;
-}
-
-button.focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(51, 102, 153, 0.5);
-}
-
 @media (max-width: 765px) {
 
 
