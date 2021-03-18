@@ -66,6 +66,7 @@ class Link(models.Model):
 
     url = models.URLField(max_length=300, blank=False)
     description = models.TextField(max_length=500, blank=False)
+    tagline = models.CharField(max_length=100, default="")
     name = models.CharField(max_length=100, blank=False)
     tags = models.ManyToManyField(
         to='links.Tag',

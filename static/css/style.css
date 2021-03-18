@@ -256,3 +256,30 @@ ul.card-text {
     width: 100%;
     display: block;
 }
+
+.card-block {
+    display: block;
+    width: 100%;
+}
+
+div.card-body {
+    padding: 14px;
+}
+
+div.card-header {
+    padding: 8px 14px;
+}
+
+.card-header > .h6 {
+    padding: 0;
+    margin: 0;
+}
+
+form > button {
+    border: none;
+    outline: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 15px;
+}

@@ -19,5 +19,5 @@ class SearchForm(forms.Form):
 class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
-        fields = ["name",  "url", "type", "description", "level"]
+        fields = ["name",  "url", "type", "tagline", "description", "level"]
 

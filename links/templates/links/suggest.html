@@ -4,7 +4,7 @@
 {% block content %}
     <div class="card">
         <div class="card-header h5">
-            Suggest a great learning resource that everyone should know about
+            Add a great learning resource that everyone should know about
         </div>
         <div class="card-body">
             <form action="" method="POST" class="form">
@@ -12,38 +12,44 @@
                 <div class="form-group suggest-form-description-group">
                     {{ form.name.errors }}
                     {{ form.name.label_tag }}
-                    <small class="form-text text-muted">A short but descriptive name, eg: Intro to Set Theory Youtube Series</small>
+                    <small class="form-text text-muted">What is the name of the resource? (Try to use the official course / article / video etc. name)</small>
                     <span class="submit-form-group">{{ form.name }}</span>
                 </div>
                 <div class="form-group suggest-form-description-group">
                     {{ form.url.errors }}
                     {{ form.url.label_tag }}
-                    <small class="form-text text-muted">Paste in a link to the resource</small>
+                    <small class="form-text text-muted">Paste in a link to the resource.</small>
                     <span class="submit-form-group">{{ form.url }}</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group suggest-form-description-group">
                     {{ form.type.errors }}
-                    <span class="mr-3">{{ form.type.label_tag }}</span>
+                    {{ form.type.label_tag }}
+                    <small class="form-text text-muted">Please choose a suitable resource type.</small>
                     <span class="submit-form-group">{{ form.type }}</span>
-
+                </div>
+                <div class="form-group suggest-form-description-group">
+                    {{ form.tagline.errors }}
+                    {{ form.tagline.label_tag }}
+                    <small class="form-text text-muted">A short tagline that describes this resource as concisely as possible.</small>
+                    <span class="submit-form-group">{{ form.tagline }}</span>
                 </div>
                 <div class="form-group suggest-form-description-group">
                     {{ form.description.errors }}
                     {{ form.description.label_tag }}
-                    <small class="form-text text-muted">Keep it short and sweet. Why is the resource useful? Who is it for? (We may edit your description before publishing)</small>
+                    <small class="form-text text-muted">Keep it short and sweet. Why is the resource useful? Who is it for?</small>
                     <span class="submit-form-group">{{ form.description }}</span>
-
                 </div>
-                <div class="form-group">
+                <div class="form-group suggest-form-description-group">
                     {{ form.level.errors }}
-                    <span class="mr-3">{{ form.level.label_tag }}</span>
+                    {{ form.level.label_tag }}
+                    <small class="form-text text-muted">What level of learner is this resource for?</small>
                     <span class="submit-form-group">{{ form.level }}</span>
                 </div>
                 <button type="submit" class="btn btn-info">Submit</button>
             </form>
         </div>
         <div class="card-footer text-muted">
-            All submissions are carefully reviewed by our team before publishing to the database
+            <small>All submissions are carefully reviewed by our team before publishing to the database</small>
         </div>
     </div>
 
