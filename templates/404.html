@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load my_tags %}
+{% block title %}How Should I Learn{% endblock title %}
+{% block content %}
+    <h1 class="my-3"><i class="far fa-compass"></i> 404: You may be a little lost</h1>
+    <h2 class="my-3">This page does not exist</h2>
+    <a class="my-3" href="{% url 'links:index' %}"><i class="fas fa-home"></i> Back to home </a>
+{% endblock content %}
