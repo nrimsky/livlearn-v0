@@ -1,17 +1,11 @@
-from allauth.account.forms import SignupForm
+from django.contrib.auth.models import User
+from django import forms
 
 
-class CustomSignupForm(SignupForm):
-    """ Can be used during signup to ask the user for additional input (e.g. newsletter signup, birth date).
-    This class should implement a def signup(self, request, user) method, where user represents the newly signed up user.
-    """
-
-    def save(self, request):
-        # Ensure you call the parent class's save.
-        # .save() returns a User object.
-        user = super(CustomSignupForm, self).save(request)
-
-        # Add your own processing here.
-
-        # You must return the original result.
-        return user
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("username",)
+        labels = {
+            "username": "Change your username"
+        }
