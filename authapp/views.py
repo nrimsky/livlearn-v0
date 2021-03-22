@@ -23,7 +23,7 @@ def dashboard(request):
         "page_obj": page_obj,
         "is_paginated": page_obj.has_next(),
         "form": user_form,
-        "welcome": "Welcome to your space on How Should I Learn That"
+        "welcome": "Your personal space on How Should I Learn"
     }
     return render(request,"authapp/dashboard.html", context=context)
 

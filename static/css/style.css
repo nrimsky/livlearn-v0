@@ -63,11 +63,6 @@ h1, h2, h3 {
     text-align: left;
 }
 
-.emph {
-    text-decoration: underline dotted #f5e625;
-    font-style: italic;
-}
-
 .likes-text .fa-heart {
     color: #eb6864;
 }
@@ -128,6 +123,14 @@ html {
     display: block;
 }
 
+.tags_input {
+    text-align: left;
+}
+
+.choices__input, .choices__input--cloned, .choices__inner {
+    background-color: white;
+}
+
 .multi_selects ul {
     list-style: none;
     padding: 0;
@@ -180,6 +183,18 @@ form button.btn {
     font-size: 15px;
 }
 
+.btn-outline-dark:hover {
+    color: white !important;
+}
+
+.btn-outline-info:hover {
+    color: white !important;
+}
+
+.btn-outline-primary:hover {
+    color: white !important;
+}
+
 @media (max-width: 765px) {
 
 
@@ -215,11 +230,14 @@ p.likes-text {
 ul.card-text li {
     font-size: .8rem;
     display: inline-block;
-    padding: .1rem .4rem;
+    padding: .5rem .5rem .58rem .5rem;
     border: 1px solid;
     margin: .2rem;
     border-radius: 3rem;
     list-style: none;
+    line-height: 0;
+    text-align: center;
+    vertical-align: middle;
 }
 
 ul.card-text {
@@ -237,10 +255,9 @@ ul.card-text {
 
 .btn.icon-button {
     text-align: left;
-    padding: 5px;
     width: 250px;
     color: #222;
-    border-color: #222;
+    border-color: #403f3f;
 }
 
 .btn.icon-button:hover {
