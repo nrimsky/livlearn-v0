@@ -127,10 +127,6 @@ html {
     text-align: left;
 }
 
-.choices__input, .choices__input--cloned, .choices__inner {
-    background-color: white;
-}
-
 .multi_selects ul {
     list-style: none;
     padding: 0;
