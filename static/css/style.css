@@ -242,18 +242,48 @@ ul.card-text {
     padding: 0;
 }
 
-.btn > svg {
-    height: 30px;
-    padding: 5px;
-    width: 30px;
-    margin-left: 5px;
+.icon-button > svg {
+    height: 1rem;
+    padding: 0;
+    width: 1rem;
+    margin: 0 5px 2px 0;
 }
 
-.btn.icon-button {
-    text-align: left;
-    width: 250px;
-    color: #222;
-    border-color: #403f3f;
+a.icon-button, a.icon-button:hover, a.icon-button:active, a.icon-button:visited{
+    width: 100%;
+    text-decoration: none;
+    padding: .45rem .65rem;
+    font-size: 1rem;
+    line-height: 1rem;
+    border-radius: .1rem;
+    border: 1px solid;
+}
+
+.google {
+    color: #DB4437 !important;
+    border-color: #DB4437 !important;
+}
+
+.google:hover {
+    background-color: #ffd6d3 !important;
+}
+
+.facebook:hover {
+    background-color: #e3eafa !important;
+}
+
+
+.facebook {
+    color: #3b5998 !important;
+    border-color: #3b5998 !important;
+}
+
+@media (max-width: 330px) {
+
+    a.icon-button, a.icon-button:hover, a.icon-button:active, a.icon-button:visited{
+        font-size: 0.8rem;
+        padding: .3rem .4rem;
+    }
 }
 
 .btn.icon-button:hover {
