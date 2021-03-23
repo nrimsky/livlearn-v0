@@ -230,7 +230,7 @@ p.likes-text {
 ul.card-text li {
     font-size: .8rem;
     display: inline-block;
-    padding: .5rem .5rem .58rem .5rem;
+    padding: .5rem;
     border: 1px solid;
     margin: .2rem;
     border-radius: 3rem;
