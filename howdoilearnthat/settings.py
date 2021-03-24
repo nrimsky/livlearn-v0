@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-
 import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +27,6 @@ else:
 
 ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,7 +45,7 @@ INSTALLED_APPS = [
     'import_export',
     'links',
     'authapp',
-    'bootstrap4'
+    'django_sass',
 ]
 
 SITE_ID = 1
@@ -82,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'howdoilearnthat.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -92,7 +89,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -112,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -126,13 +121,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
-
 
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -141,6 +134,7 @@ AUTHENTICATION_BACKENDS = [
 
 if DEBUG:
     from dotenv import load_dotenv
+
     load_dotenv()
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -182,7 +176,5 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = False
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 
-
 if not DEBUG:
     django_heroku.settings(locals())
-

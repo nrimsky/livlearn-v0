@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load bootstrap4 %}
 {% load socialaccount %}
 {% load i18n %}
 {% block title %}Sign up{% endblock title %}
@@ -47,7 +46,7 @@
                 </div>
                 <form action="{% url 'account_signup' %}" method="post" class="form login-form text-left signup" id="signup_form">
                     {% csrf_token %}
-                    {% bootstrap_form form %}
+                    {{ form.as_p }}
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                     {% endif %}
@@ -56,9 +55,7 @@
                             By signing up, you confirm that you are over 16 years old and that you agree to our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy and Cookies Policy</a> and that you have read our <a target="_blank" href="{% url 'authapp:privacy' %}">Privacy and Cookies Policy</a>.
                         </small>
                     </p>
-                    {% buttons %}
-                        <button type="submit" class="btn btn-info">Sign up</button>
-                    {% endbuttons %}
+                    <button type="submit" class="btn btn-info mt-2 mb-1">Sign up</button>
                     <p>Already have an account? <a href="{{ login_url }}">Log in</a></p>
                 </form>
             </div>
