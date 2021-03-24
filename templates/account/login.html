@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load bootstrap4 %}
 {% load socialaccount %}
 {% block title %}Log in{% endblock title %}
 
@@ -45,13 +44,11 @@
                 <form method="POST" action="{% url 'account_login' %}" class="form login-form text-left login">
 
                     {% csrf_token %}
-                    {% bootstrap_form form %}
+                    {{ form.as_p }}
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                     {% endif %}
-                    {% buttons %}
-                        <button type="submit" class="btn btn-info">Log in</button>
-                    {% endbuttons %}
+                    <button type="submit" class="btn btn-info mt-2 mb-1">Log in</button>
                     <p><a href="{% url 'account_reset_password' %}">Forgotten your password?</a></p>
                 </form>
             </div>

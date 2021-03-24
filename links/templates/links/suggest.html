@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-{% load bootstrap4 %}
 {% block title %}Suggest A Resource{% endblock title %}
 {% block content %}
-    <div class="card">
+    <div class="card suggest-card">
         <div class="card-header h5">
             Add a great learning resource that everyone should know about
         </div>
@@ -53,7 +52,7 @@
         </div>
     </div>
 
-    <p class="mt-3"><a href="{{ saved_back_url }}">Back</a></p>
+    <p class="mt-3 suggest-card"><a href="{{ saved_back_url }}">Back</a></p>
 
 
 {% endblock content %}

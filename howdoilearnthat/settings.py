@@ -1,13 +1,14 @@
 from pathlib import Path
 import os
 
-import django_heroku
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 DEBUG = False
+
+if not DEBUG:
+    import django_heroku
 
 if DEBUG:
     SECRET_KEY = 'pjx@&_p=!sxc1+c)^8y6%oka2au=acj2a&0bhp6h%rzto_t-cq'
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
     'import_export',
     'links',
     'authapp',
-    'bootstrap4'
+    'django_sass',
 ]
 
 SITE_ID = 1

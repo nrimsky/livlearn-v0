@@ -1,36 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-
-
-    <a class="navbar-brand bold-text my-1 my-md-0 mx-0" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> How Should I Learn <small>Alpha</small></a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link my-1 my-lg-0 mx-md-2" href="{% url 'links:index' %}">Find learning resources</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto navbar-right">
-            {% if request.user.is_authenticated %}
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> How Should I Learn</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item active">
-                    <a class="nav-link mx-md-2 my-1 my-lg-0" href="{% url 'authapp:dashboard' %}"><i class="fas fa-user-alt mr-2"></i> {{ user.email }}</a>
+                    <a class="nav-link my-1 my-md-0 mx-0" href="{% url 'links:index' %}">Find learning resources</a>
                 </li>
-                <li class="nav-item active">
-                    <a href="{% url 'account_logout' %}" class="btn btn-outline-primary nav-link mx-md-2 my-1 my-lg-0"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </li>
-            {% else %}
-                <li class="nav-item active">
-                    <a href="{% url 'account_login' %}" class="btn btn-outline-info nav-link mx-md-2 my-1 my-lg-0">Login</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="{% url 'account_signup' %}" class="btn btn-outline-primary nav-link mx-md-2 my-1 my-lg-0">Sign up</a>
-                </li>
-            {% endif %}
-        </ul>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a href="{% url 'authapp:dashboard' %}"
+                           class="btn btn-info nav-link mx-md-2 my-1 my-md-0"><i
+                                class="fas fa-user-alt me-2"></i> {{ user.email }}</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{% url 'account_logout' %}"
+                           class="btn nav-link mx-md-2 my-1 my-md-0"><i
+                                class="fas fa-sign-out-alt"></i>
+                            Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item active">
+                        <a href="{% url 'account_login' %}"
+                           class="btn nav-link mx-md-2 my-1 my-md-0 btn-info">Login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{% url 'account_signup' %}"
+                           class="btn nav-link mx-md-2 my-1 my-md-0">Sign
+                            up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>
