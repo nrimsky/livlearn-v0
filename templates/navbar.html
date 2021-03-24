@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> How Should I Learn</a>
+        <a class="navbar-brand text-dark" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> HOW SHOULD I LEARN</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,31 +8,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item active">
-                    <a class="nav-link my-1 my-md-0 mx-0" href="{% url 'links:index' %}">Find learning resources</a>
+                    <a class="my-1 my-md-0 mx-0 text-info text-decoration-none" href="{% url 'links:index' %}"><small>Find learning resources</small></a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item active">
                         <a href="{% url 'authapp:dashboard' %}"
-                           class="btn btn-info nav-link mx-md-2 my-1 my-md-0"><i
-                                class="fas fa-user-alt me-2"></i> {{ user.email }}</a>
+                           class="btn btn-primary mx-md-2 my-1 my-md-0"><i
+                                class="fas fa-user-alt"></i> {{ user.username }}</a>
                     </li>
                     <li class="nav-item active">
                         <a href="{% url 'account_logout' %}"
-                           class="btn nav-link mx-md-2 my-1 my-md-0"><i
+                           class="btn-outline-info btn mx-md-2 my-1 my-md-0"><i
                                 class="fas fa-sign-out-alt"></i>
                             Logout</a>
                     </li>
                 {% else %}
                     <li class="nav-item active">
-                        <a href="{% url 'account_login' %}"
-                           class="btn nav-link mx-md-2 my-1 my-md-0 btn-info">Login</a>
+                        <a href="{% url 'account_signup' %}"
+                           class="btn btn-primary mx-md-2 my-1 my-md-0">Sign
+                            up</a>
                     </li>
                     <li class="nav-item active">
-                        <a href="{% url 'account_signup' %}"
-                           class="btn nav-link mx-md-2 my-1 my-md-0">Sign
-                            up</a>
+                        <a href="{% url 'account_login' %}"
+                           class="btn-outline-info btn mx-md-2 my-1 my-md-0">Login</a>
                     </li>
                 {% endif %}
             </ul>

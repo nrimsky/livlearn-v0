@@ -1,7 +1,19 @@
-.login-form, .suggest-card, .search-form, .form-card {
+.suggest-card, .search-form {
     margin: auto;
-    max-width: 50rem;
+    max-width: 80%
 }
+
+.form-card {
+    max-width: 600px;
+    margin: auto;
+}
+
+.info-card {
+    max-width: 800px;
+    margin: auto;
+}
+
+
 
 .date-text {
     margin: .4rem 0;
@@ -15,8 +27,16 @@
     width: 100%;
 }
 
-small {
+small.card-block {
     line-height: 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.btn-more, .btn-access {
+    padding: .15rem .3rem;
 }
 
 .bold-text {
@@ -180,10 +200,10 @@ p.likes-text {
 }
 
 ul.card-text li {
+    background-color: #f2f8f3;
     font-size: .8rem;
     display: inline-block;
-    padding: .5rem;
-    border: 1px solid;
+    padding: .6rem;
     margin: .2rem;
     border-radius: 3rem;
     list-style: none;
@@ -287,9 +307,4 @@ form > button {
 
 .btn-outline-info:hover, .btn-outline-primary:hover, .btn-outline-dark:hover, .btn-info, .btn-primary {
     color: white !important;
-}
-
-.nav-link {
-    color: white !important;
-    border-color: white !important;
 }

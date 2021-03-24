@@ -6,22 +6,22 @@
     {% if searched %}
         <p id="searched" style="height: 0"></p>
     {% endif %}
-    <form class="search-form" action="" method="get">
+    <form class="search-form mb-3" action="" method="get">
         <div class="multi_selects">
             <div class="tags_wrapper">
                 {{ form.tags.errors }}
-                <span class="bold-text">{{ form.tags.label_tag }}</span>
+                <span class="bold-text mb-2 d-block">{{ form.tags.label_tag }}</span>
                 <span class="tags_input">{{ form.tags }}</span>
             </div>
             <div class="resource_type_wrapper">
                 {{ form.type.errors }}
-                <span class="bold-text">{{ form.type.label_tag }}</span>
+                <span class="bold-text mb-2 d-block">{{ form.type.label_tag }}</span>
                 {{ form.type }}
             </div>
         </div>
         <div class="experience_level_wrapper">
             {{ form.level.errors }}
-            <span class="bold-text">{{ form.level.label_tag }}</span>
+            <span class="bold-text mb-2">{{ form.level.label_tag }}</span>
             {{ form.level }}
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Find resources!</button>
@@ -49,9 +49,9 @@
                                 <li>{{ link.get_type_display }}</li>
                             </ul>
                             <div class="mt-auto flex-row-lg d-flex-lg">
-                                <a href="{% url 'links:detail' link.id %}" class="btn btn-outline-info mt-2 me-lg-2 ">More
+                                <a href="{% url 'links:detail' link.id %}" class="btn btn-primary btn-more mt-2 me-lg-2 ">More
                                     details</a>
-                                <a href="{{ link.url }}" class="btn btn-outline-primary mt-2">Access resource</a>
+                                <a href="{{ link.url }}" target="_blank" class="btn btn-outline-info mt-2 btn-access">Access resource</a>
                             </div>
                         </div>
                     </div>
