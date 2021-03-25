@@ -1,0 +1,57 @@
+// Card
+
+.card {
+  height: 100%;
+  border: 0;
+  box-shadow: $card-box-shadow;
+
+  .bg-image {
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+  }
+}
+
+.card-header {
+  background-color: $card-header-background-color;
+}
+
+.card-body {
+  &[class*='bg-'] {
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
+  }
+}
+
+.card-footer {
+  background-color: $card-footer-background-color;
+}
+
+.card-text {
+  li {
+    background-color: $light;
+    font-size: .8rem;
+    display: inline-block;
+    padding: .6rem;
+    margin: .2rem;
+    border-radius: 3rem;
+    list-style: none;
+    line-height: 0;
+    text-align: center;
+    vertical-align: middle;
+
+  }
+}
+
+ul.card-text {
+    display: block;
+    margin: .2rem 0;
+    padding: 0;
+}
+
+
+.card-block {
+  small {
+    line-height: 1rem;
+
+  }
+}

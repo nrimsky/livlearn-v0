@@ -1,33 +1,40 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand text-dark" href="{% url 'links:index' %}"><i class="fas fa-graduation-cap"></i> HOW SHOULD I LEARN</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand bold-text" href="{% url 'links:index' %}">💡</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item active">
                         <a href="{% url 'authapp:dashboard' %}"
-                           class="btn btn-primary mx-md-2 my-1 my-md-0"><i
+                           class="btn btn-light mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm"><i
                                 class="fas fa-user-alt"></i> {{ user.username }}</a>
                     </li>
                     <li class="nav-item active">
                         <a href="{% url 'account_logout' %}"
-                           class="btn-outline-info btn mx-md-2 my-1 my-md-0"><i
+                           class="btn-outline-light btn mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm"><i
                                 class="fas fa-sign-out-alt"></i>
                             Logout</a>
                     </li>
                 {% else %}
                     <li class="nav-item active">
                         <a href="{% url 'account_signup' %}"
-                           class="btn btn-primary mx-md-2 my-1 my-md-0">Sign
+                           class="btn btn-light mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm">Sign
                             up</a>
                     </li>
                     <li class="nav-item active">
                         <a href="{% url 'account_login' %}"
-                           class="btn-outline-info btn mx-md-2 my-1 my-md-0">Login</a>
+                           class="btn-outline-light btn mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm">Login</a>
                     </li>
                 {% endif %}
             </ul>

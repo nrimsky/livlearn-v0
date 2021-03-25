@@ -2,31 +2,29 @@
 {% load my_tags %}
 {% block title %}How Should I Learn{% endblock title %}
 {% block content %}
-    <h2 class="text-warning mb-3 d-block mx-auto text-center">Find and share links to great educational content.</h2>
     {% if searched %}
-        <p id="searched" style="height: 0"></p>
+        <p id="searched" class="d-none"></p>
     {% endif %}
-    <form class="search-form mb-3" action="" method="get">
-        <div class="multi_selects">
-            <div class="tags_wrapper">
-                {{ form.tags.errors }}
-                <span class="bold-text mb-2 d-block">{{ form.tags.label_tag }}</span>
-                <span class="tags_input">{{ form.tags }}</span>
-            </div>
-            <div class="resource_type_wrapper">
-                {{ form.type.errors }}
-                <span class="bold-text mb-2 d-block">{{ form.type.label_tag }}</span>
-                {{ form.type }}
-            </div>
+    <form class="search-form" action="" method="get">
+        <div class="tags_wrapper my-2">
+            {{ form.tags.errors }}
+            <span class="tags_input">{{ form.tags }}</span>
         </div>
-        <div class="experience_level_wrapper">
+        <div class="resource_type_wrapper my-2">
+            {{ form.type.errors }}
+            <span class="bold-text d-block">{{ form.type.label_tag }}</span>
+            {{ form.type }}
+        </div>
+        <div class="experience_level_wrapper my-2">
             {{ form.level.errors }}
-            <span class="bold-text mb-2">{{ form.level.label_tag }}</span>
+            <span class="bold-text">{{ form.level.label_tag }}</span>
             {{ form.level }}
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Find resources!</button>
-        <a href="{% url 'links:suggest' %}" class="btn btn-outline-info suggest-button"><i class="fas fa-plus"></i>
-            Add a new resource</a>
+        <div class="mt-3 mx-auto">
+            <button type="submit" class="btn btn-primary btn-block mx-auto"><i class="fas fa-search"></i> Find Resources!</button>
+            <a href="{% url 'links:suggest' %}" class="btn btn-outline-info suggest-button mt-2 btn-block mx-auto"><i class="fas fa-plus"></i>
+                Share Resource</a>
+        </div>
     </form>
     {% if page_obj %}
         <h2 class="mt-4" id="results">{{ list_title }}</h2>
@@ -34,13 +32,12 @@
             {% for link in page_obj %}
                 <div class="col-lg-6 mb-4">
                     <div class="card">
-                        <div class="card-header">
-                            <span class="h6 card-block">{{ link.name }}</span>
-                            <small class="card-block">{{ link.tagline }}</small>
-                        </div>
                         <div class="card-body d-flex flex-column">
-                            <p class="likes-text"><i class="fas fa-heart"></i> {{ link.number_of_likes }}
-                                Like{{ link.number_of_likes|pluralize }}</p>
+                            <p class="card-title h6 m-0">{{ link.name }}</p>
+                            <small class="card-text mb-1">{{ link.tagline }}</small>
+                            <small class="text-danger mb-1 d-block"><i
+                                    class="fas fa-heart"></i> {{ link.number_of_likes }}
+                                Like{{ link.number_of_likes|pluralize }}</small>
                             <ul class="card-text">
                                 {% for tag in link.tags.all %}
                                     <li>{{ tag.name }}</li>
@@ -49,9 +46,10 @@
                                 <li>{{ link.get_type_display }}</li>
                             </ul>
                             <div class="mt-auto flex-row-lg d-flex-lg">
-                                <a href="{% url 'links:detail' link.id %}" class="btn btn-primary btn-more mt-2 me-lg-2 ">More
-                                    details</a>
-                                <a href="{{ link.url }}" target="_blank" class="btn btn-outline-info mt-2 btn-access">Access resource</a>
+                                <a href="{% url 'links:detail' link.id %}"
+                                   class="btn btn-primary btn-more mt-2 me-lg-2 btn-sm me-2">More Details</a>
+                                <a href="{{ link.url }}" target="_blank"
+                                   class="btn btn-outline-info mt-2 btn-access btn-sm">Access Resource</a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +84,7 @@
     <script>
         $('#id_tags').selectize({
             openOnFocus: false,
-            placeholder: "Search for topics..."
+            placeholder: "Search for learning resource topics..."
         });
         if (document.getElementById("searched")) {
             const searchResults = document.getElementById("results");

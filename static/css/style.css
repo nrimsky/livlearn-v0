@@ -8,22 +8,12 @@
     margin: auto;
 }
 
-.navbar-brand, .h1, .h2, h1, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6, .btn, button, .bold-text {
-    letter-spacing: .02rem;
-    font-weight: 400;
-    font-family: 'Carter One', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-}
-
 .info-card {
     max-width: 800px;
     margin: auto;
 }
 
-
-
 .date-text {
-    margin: .4rem 0;
-    padding: 0;
     font-size: .7rem;
     line-height: .7rem;
 }
@@ -31,22 +21,6 @@
 .inline-label {
     display: block !important;
     width: 100%;
-}
-
-small.card-block {
-    line-height: 1rem;
-}
-
-.navbar-brand {
-    font-size: 1.1rem;
-}
-
-.btn-more, .btn-access {
-    padding: .15rem .3rem;
-}
-
-.bold-text {
-    font-weight: 600;
 }
 
 select {
@@ -78,38 +52,7 @@ html {
     position: relative;
 }
 
-
-.experience_level_wrapper {
-    position: relative;
-    display: block;
-    height: 2.5rem;
-    max-width: 20rem;
-    margin: 1rem auto 0 auto;
-}
-
-.experience_level_wrapper label {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.experience_level_wrapper select {
-    display: inline-block;
-    right: 0;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.multi_selects {
-    display: block;
-    width: 100%;
-}
-
 .resource_type_wrapper {
-    margin-top: 1rem;
     width: 100%;
     display: block;
 }
@@ -123,112 +66,32 @@ html {
     text-align: left;
 }
 
-.multi_selects ul {
+.resource_type_wrapper  ul {
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: left;
 }
 
-.multi_selects ul li {
+.resource_type_wrapper  ul li {
     display: inline;
     padding: 0 .3rem;
 }
 
 
 .search-form button.btn, .suggest-button {
-    margin: .3rem auto;
     width: 80%;
     display: block;
 }
 
-
-form button.btn {
-    font-weight: 600;
-}
-
 .search-form {
     text-align: center;
-    margin-bottom: 2rem;
 }
 
 .submit-form-group > textarea, .submit-form-group > input {
     width: 100%;
     max-height: 6rem;
     padding: .3rem;
-}
-
-.likes-text, #num-likes {
-    color: #D7263D;
-}
-
-.suggest-form-description-group {
-    margin-bottom: 1rem;
-
-}
-
-a, button, .btn, .nav-link {
-    font-weight: 600 !important;
-}
-
-.card-header {
-    background-color: #f2f8f3;
-}
-
-
-.suggest-form-description-group > label, .suggest-form-description-group > small {
-    margin: 0;
-}
-
-.suggest-form-description-group > .submit-form-group {
-    margin-top: .5rem;
-    display: block;
-}
-
-.nav-link {
-    font-size: 1rem;
-}
-
-@media (max-width: 765px) {
-
-    .card-body {
-        padding: 1rem;
-    }
-
-}
-
-.card {
-    height: 100%;
-}
-
-p.likes-text {
-    margin: 0;
-}
-
-ul.card-text li {
-    background-color: #f2f8f3;
-    font-size: .8rem;
-    display: inline-block;
-    padding: .6rem;
-    margin: .2rem;
-    border-radius: 3rem;
-    list-style: none;
-    line-height: 0;
-    text-align: center;
-    vertical-align: middle;
-}
-
-ul.card-text {
-    display: block;
-    margin: .2rem 0;
-    padding: 0;
-}
-
-.icon-button > svg {
-    height: 1rem;
-    padding: 0;
-    width: 1rem;
-    margin: 0 5px 2px 0;
 }
 
 a.icon-button, a.icon-button:hover, a.icon-button:active, a.icon-button:visited {
@@ -260,6 +123,10 @@ a.icon-button, a.icon-button:hover, a.icon-button:active, a.icon-button:visited 
     border-color: #3b5998 !important;
 }
 
+.bold-text {
+    font-weight: 600;
+}
+
 @media (max-width: 330px) {
 
     a.icon-button, a.icon-button:hover, a.icon-button:active, a.icon-button:visited {
@@ -276,19 +143,6 @@ a.icon-button, a.icon-button:hover, a.icon-button:active, a.icon-button:visited 
 .card-block {
     display: block;
     width: 100%;
-}
-
-div.card-body {
-    padding: 1rem;
-}
-
-div.card-header {
-    padding: .5rem 1rem;
-}
-
-.card-header > .h6 {
-    padding: 0;
-    margin: 0;
 }
 
 form > button {
@@ -309,8 +163,4 @@ form > button {
     width: 100%;
     padding: .2rem;
     margin-top: .3rem;
-}
-
-.btn-outline-info:hover, .btn-outline-primary:hover, .btn-outline-dark:hover, .btn-info, .btn-primary {
-    color: white !important;
 }
