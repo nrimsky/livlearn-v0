@@ -5,24 +5,24 @@
     {% if searched %}
         <p id="searched" class="d-none"></p>
     {% endif %}
-    <form class="search-form" action="" method="get">
-        <div class="tags_wrapper my-2">
+    <form class="w-100 mx-auto" action="" method="get">
+        <div class="tags_wrapper my-2 w-100 mx-auto">
             {{ form.tags.errors }}
             <span class="tags_input">{{ form.tags }}</span>
         </div>
-        <div class="resource_type_wrapper my-2">
+        <div class="resource_type_wrapper my-2 w-100 mx-auto">
             {{ form.type.errors }}
             <span class="bold-text d-block">{{ form.type.label_tag }}</span>
             {{ form.type }}
         </div>
-        <div class="experience_level_wrapper my-2">
+        <div class="experience_level_wrapper my-2 w-100 mx-auto">
             {{ form.level.errors }}
             <span class="bold-text">{{ form.level.label_tag }}</span>
             {{ form.level }}
         </div>
-        <div class="mt-3 mx-auto">
-            <button type="submit" class="btn btn-primary btn-block mx-auto"><i class="fas fa-search"></i> Find Resources!</button>
-            <a href="{% url 'links:suggest' %}" class="btn btn-outline-info suggest-button mt-2 btn-block mx-auto"><i class="fas fa-plus"></i>
+        <div class="mt-3 mx-auto w-75">
+            <button type="submit" class="btn btn-primary btn-block mx-auto w-100"><i class="fas fa-search"></i> Find Resources!</button>
+            <a href="{% url 'links:suggest' %}" class="btn btn-outline-info w-100 mt-2 btn-block mx-auto"><i class="fas fa-plus"></i>
                 Share Resource</a>
         </div>
     </form>
@@ -35,7 +35,7 @@
                         <div class="card-body d-flex flex-column">
                             <p class="card-title h6 m-0">{{ link.name }}</p>
                             <small class="card-text mb-1">{{ link.tagline }}</small>
-                            <small class="text-danger mb-1 d-block"><i
+                            <small class="text-danger my-1 d-block"><i
                                     class="fas fa-heart"></i> {{ link.number_of_likes }}
                                 Like{{ link.number_of_likes|pluralize }}</small>
                             <ul class="card-text">

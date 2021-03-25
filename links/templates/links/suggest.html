@@ -1,48 +1,48 @@
 {% extends "base.html" %}
 {% block title %}Suggest A Resource{% endblock title %}
 {% block content %}
-    <div class="card suggest-card">
+    <div class="card">
         <div class="card-header h5 py-3">💡 Share a great learning resource that helped you</div>
         <div class="card-body">
-            <form action="" method="POST" class="form">
+            <form action="" method="POST" class="form suggest-form">
                 {% csrf_token %}
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     {{ form.name.errors }}
                     {{ form.name.label_tag }}
-                    <small class="form-text text-muted">What is the name of the resource? (Try to use the official course / article / video etc. name)</small>
-                    <span class="submit-form-group">{{ form.name }}</span>
+                    <small class="text-muted">What is the name of the resource? (Try to use the official course / article / video etc. name)</small>
+                    {{ form.name }}
                 </div>
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     {{ form.url.errors }}
                     {{ form.url.label_tag }}
-                    <small class="form-text text-muted">Paste in a link to the resource.</small>
-                    <span class="submit-form-group">{{ form.url }}</span>
+                    <small class="text-muted">Paste in a link to the resource.</small>
+                    {{ form.url }}
                 </div>
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     {{ form.type.errors }}
                     {{ form.type.label_tag }}
-                    <small class="form-text text-muted">Please choose a suitable resource type.</small>
-                    <span class="submit-form-group">{{ form.type }}</span>
+                    <small class="text-muted">Please choose a suitable resource type.</small>
+                    {{ form.type }}
                 </div>
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     {{ form.tagline.errors }}
                     {{ form.tagline.label_tag }}
-                    <small class="form-text text-muted">A short tagline that describes this resource as concisely as possible.</small>
-                    <span class="submit-form-group">{{ form.tagline }}</span>
+                    <small class="text-muted">A short tagline that describes this resource as concisely as possible.</small>
+                    {{ form.tagline }}
                 </div>
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     {{ form.description.errors }}
                     {{ form.description.label_tag }}
-                    <small class="form-text text-muted">Keep it short and sweet. Why is the resource useful? Who is it for?</small>
-                    <span class="submit-form-group">{{ form.description }}</span>
+                    <small class="text-muted">Keep it short and sweet. Why is the resource useful? Who is it for?</small>
+                    {{ form.description }}
                 </div>
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     {{ form.level.errors }}
                     {{ form.level.label_tag }}
-                    <small class="form-text text-muted">What level of learner is this resource for?</small>
-                    <span class="submit-form-group">{{ form.level }}</span>
+                    <small class="text-muted">What level of learner is this resource for?</small>
+                    {{ form.level }}
                 </div>
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="mt-3 btn btn-info">Submit</button>
             </form>
         </div>
         <div class="card-footer text-muted">
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <p class="mt-3 suggest-card"><a href="{{ saved_back_url }}">Back</a></p>
+    <p class="mt-3 w-75 mx-auto"><a href="{{ saved_back_url }}">Back</a></p>
 
 
 {% endblock content %}

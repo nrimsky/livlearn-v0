@@ -8,13 +8,13 @@
             <p class="card-title bold-text"><i class="fas fa-user-edit"></i> Edit your account details</p>
             <form action="" method="post" class="form">
                 {% csrf_token %}
-                <div class="form-group suggest-form-description-group">
+                <div class="form-group">
                     <span class="text-danger bold-text">{{ form.username.errors }}</span>
-                    <span class="inline-label">{{ form.username.label_tag }}</span>
+                    <span class="d-block w-100">{{ form.username.label_tag }}</span>
                     <small class="form-text text-muted">Your username is shown if you leave a comment</small>
                     <span class="submit-form-group">{{ form.username }}</span>
                 </div>
-                <button type="submit" class="btn btn-outline-info btn-sm">Save</button>
+                <button type="submit" class="btn btn-outline-info btn-sm mt-3">Save</button>
             </form>
         </div>
     </div>
@@ -26,8 +26,8 @@
                     <div class="card">
                         <div class="card-body d-flex flex-column">
                             <p class="card-title h6 m-0">{{ link.name }}</p>
-                            <small class="card-text mb-1">{{ link.tagline }}</small>
-                            <small class="text-danger mb-1 d-block"><i class="fas fa-heart"></i> {{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</small>
+                            <small class="card-text mb-1 ">{{ link.tagline }}</small>
+                            <small class="text-danger my-1 d-block"><i class="fas fa-heart"></i> {{ link.number_of_likes }} Like{{ link.number_of_likes|pluralize }}</small>
                             <ul class="card-text">
                                 {% for tag in link.tags.all %}
                                     <li>{{ tag.name }}</li>
