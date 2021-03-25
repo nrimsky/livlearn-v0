@@ -5,17 +5,20 @@ from django.db.models import Count
 
 class LinkQuerySet(models.QuerySet):
     def search(self, **kwargs):
-        qs = self
-        qs = qs.filter(approved=True)
-        if kwargs.get('level', []):
-            if "AN" not in kwargs['level']:
-                qs = qs.filter(level__in=[kwargs['level'], "AN"])
-        if kwargs.get('type', []) and len(kwargs['type']) != 0:
-            qs = qs.filter(type__in=kwargs['type'])
-        if kwargs.get('tags', []) and len(kwargs['tags']) != 0:
-            qs = qs.filter(tags__in=kwargs['tags'])
-        qs = qs.annotate(q_count=Count('likes')).order_by('-q_count')
-        return qs.distinct()
+        if len(kwargs['tags']) != 0:
+            qs = self
+            qs = qs.filter(approved=True)
+            if kwargs.get('level', []):
+                if "AN" not in kwargs['level']:
+                    qs = qs.filter(level__in=[kwargs['level'], "AN"])
+            if kwargs.get('type', []) and len(kwargs['type']) != 0:
+                qs = qs.filter(type__in=kwargs['type'])
+            if kwargs.get('tags', []):
+                qs = qs.filter(tags__in=kwargs['tags'])
+            qs = qs.annotate(q_count=Count('likes')).order_by('-q_count')
+            return qs.distinct()
+        else:
+            return Link.objects.none()
 
 
 class Link(models.Model):

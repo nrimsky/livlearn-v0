@@ -76,7 +76,8 @@
             <p>Results {{ page_obj.start_index }}—{{ page_obj.end_index }}</p>
         {% endif %}
     {% else %}
-        <p class="mt-2">No links found : (</p>
+        <p class="mt-4 bold-text">😿 No links found</p>
+        <p>Let us know what topic you'd like us to curate more resources on - get in touch at info@howshouldilearn.com</p>
     {% endif %}
 {% endblock content %}
 
@@ -84,6 +85,7 @@
     <script>
         $('#id_tags').selectize({
             openOnFocus: false,
+            closeAfterSelect: true,
             placeholder: "Search for learning resource topics..."
         });
         if (document.getElementById("searched")) {
