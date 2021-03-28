@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Link, Tag
+from .models import Link, Tag, Comment
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.detail import DetailView
@@ -63,7 +63,7 @@ def postLike(request):
     # request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
         # get the form data
-        link = Link.objects.get(id=request.POST.get('like_id'))
+        link = Link.objects.get(id=request.POST.get('link_id'))
         if link:
             if link.likes.filter(id=request.user.id).exists():
                 link.likes.remove(request.user)
@@ -71,6 +71,20 @@ def postLike(request):
             else:
                 link.likes.add(request.user)
                 return JsonResponse({"post_is_liked": True, "num_likes": link.likes.count()}, status=200)
+
+
+def postComment(request):
+    if request.is_ajax and request.method == "POST":
+        if request.user.is_authenticated:
+            body = request.POST.get('body')
+            link = Link.objects.get(id=request.POST.get('link_id'))
+            if link:
+                comment = Comment(user=request.user, link=link, body=body)
+                comment.save()
+                return JsonResponse({"posted_body": str(body), "username": str(request.user.username), "num_comments": link.comments.all().count()}, status=200)
+        else:
+            return HttpResponseRedirect(reverse('authapp:login'))
+
 
 
 def suggest(request):

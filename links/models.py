@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.db.models import Count
+from django.contrib.auth.models import User
 
 
 class LinkQuerySet(models.QuerySet):
@@ -90,3 +91,15 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
+class Comment(models.Model):
+    link = models.ForeignKey(Link, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    created_on = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(max_length=500)
+
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return 'Comment in {} by {}'.format(self.link.name, self.user.username)
