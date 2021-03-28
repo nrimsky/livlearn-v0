@@ -20,5 +20,12 @@ admin.site.register(Tag)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('created_on', 'body')
-    search_fields = ('body',)
+
+    def user(self, comment):
+        return comment.user.username
+
+    def link(self, comment):
+        return comment.link.name
+
+    list_display = ('id', 'user', 'link', 'created_on', 'body')
+    search_fields = ('body', 'user', 'link')
