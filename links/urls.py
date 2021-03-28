@@ -9,4 +9,5 @@ urlpatterns = [
     path('suggest/', views.suggest, name='suggest'),
     path('<int:pk>/', views.LinkDetailView.as_view(), name='detail'),
     path('post/ajax/like', views.postLike, name='post_like'),
+    path('post/ajax/comment', views.postComment, name='post_comment'),
 ]
