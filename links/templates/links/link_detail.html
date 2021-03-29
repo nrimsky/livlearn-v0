@@ -64,7 +64,7 @@
 
 
     {% if object.comments.all.count > 0 %}
-        <h1 class="h3 text-center" id="num-comments"><i class="fas fa-comments"></i> {{ object.comments.all.count }}
+        <h1 class="h3 text-center mt-3" id="num-comments"><i class="fas fa-comments"></i> {{ object.comments.all.count }}
             Comment{{ object.comments.all.count|pluralize }}</h1>
         <div class="p-3" id="comment-section">
             {% for comment in object.comments.all %}
@@ -76,7 +76,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <h1 class="h3 text-center" id="num-comments"><i class="fas fa-comment-slash"></i> No comments yet</h1>
+        <h1 class="h3 text-center mt-3" id="num-comments"><i class="fas fa-comment-slash"></i> No comments yet</h1>
         <div class="p-3" id="comment-section">
         </div>
     {% endif %}
