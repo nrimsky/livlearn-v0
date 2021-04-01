@@ -4,7 +4,7 @@
 {% block title %}Sign up{% endblock title %}
 
 {% block content %}
-    <div class="card text-center w-75 mx-auto my-lg-3">
+    <div class="card text-center mx-auto custom-container my-3">
         <h2 class="card-header h5">Sign up for your account</h2>
         <div class="card-body">
             <div class="col my-md-3 my-2">
@@ -26,8 +26,21 @@
                 </div>
                 <form action="{% url 'account_signup' %}" method="post" class="form login-form text-left signup" id="signup_form">
                     {% csrf_token %}
+                    <div class="form-outline mb-3">
+                        <input type="email" name="email" autocomplete="email" required id="id_email" class="form-control">
+                        <label for="id_email" class="form-label">Email</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="text" name="username" autocomplete="username" minlength="1" maxlength="150" required id="id_username" class="form-control">
+                        <label for="id_username" class="form-label">Username</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="password" name="password1" autocomplete="new-password" required id="id_password1" class="form-control">
+                        <label for="id_password1" class="form-label">Password</label>
+                    </div>
                     <div class="form-outline mb-4">
-                    {{ form }}
+                        <input type="password" name="password2" required id="id_password2" class="form-control">
+                        <label for="id_password2" class="form-label">Repeat password</label>
                     </div>
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
