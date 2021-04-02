@@ -6,7 +6,13 @@ small {
   margin: 0;
 }
 
-.suggest-form {
+.custom-container {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.suggest-form, .edit-user-form {
   textarea, input, label, small {
     display: block;
     width: 100%;
@@ -134,13 +140,6 @@ form > button {
 
 .selectize-input {
   position: relative;
-}
-
-#id_email, #id_username, #id_password1, #id_password2, #id_login, #id_password {
-  display: block;
-  width: 100%;
-  padding: .2rem;
-  margin-top: .3rem;
 }
 
 

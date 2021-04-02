@@ -6,14 +6,12 @@
     <div class="card my-4">
         <div class="card-body">
             <p class="card-title bold-text"><i class="fas fa-user-edit"></i> Edit your account details</p>
-            <form action="" method="post" class="form">
+            <form action="" method="post" class="edit-user-form">
                 {% csrf_token %}
-                <div class="form-group">
-                    <span class="text-danger bold-text">{{ form.username.errors }}</span>
-                    <span class="d-block w-100">{{ form.username.label_tag }}</span>
-                    <small class="form-text text-muted">Your username is shown if you leave a comment</small>
-                    <span class="submit-form-group">{{ form.username }}</span>
-                </div>
+                <span class="text-danger bold-text">{{ form.username.errors }}</span>
+                {{ form.username.label_tag }}
+                <small class=text-muted">Your username is shown if you leave a comment</small>
+                {{ form.username }}
                 <button type="submit" class="btn btn-outline-info btn-sm mt-3">Save</button>
             </form>
         </div>

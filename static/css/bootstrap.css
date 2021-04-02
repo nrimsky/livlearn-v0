@@ -16335,20 +16335,26 @@ small, .small {
   margin: 0;
 }
 
-.suggest-form textarea, .suggest-form input, .suggest-form label, .suggest-form small, .suggest-form .small {
+.custom-container {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.suggest-form textarea, .suggest-form input, .suggest-form label, .suggest-form small, .suggest-form .small, .edit-user-form textarea, .edit-user-form input, .edit-user-form label, .edit-user-form small, .edit-user-form .small {
   display: block;
   width: 100%;
 }
 
-.suggest-form small, .suggest-form .small {
+.suggest-form small, .suggest-form .small, .edit-user-form small, .edit-user-form .small {
   margin-bottom: .5rem;
 }
 
-.suggest-form label {
+.suggest-form label, .edit-user-form label {
   font-weight: 600;
 }
 
-.suggest-form .form-group {
+.suggest-form .form-group, .edit-user-form .form-group {
   margin-top: .8rem;
   margin-bottom: .8rem;
 }
@@ -16459,11 +16465,4 @@ form > button {
 
 .selectize-input {
   position: relative;
-}
-
-#id_email, #id_username, #id_password1, #id_password2, #id_login, #id_password {
-  display: block;
-  width: 100%;
-  padding: .2rem;
-  margin-top: .3rem;
 }
