@@ -5,6 +5,7 @@
     {% if searched %}
         <p id="searched" class="d-none"></p>
     {% endif %}
+    <h1 class="h5 mb-3">A carefully curated directory of original, fun and diverse tech-related learning resources.</h1>
     <form class="w-100 mx-auto" action="" method="get">
         <div class="tags_wrapper my-2 w-100 mx-auto">
             {{ form.tags.errors }}
@@ -76,8 +77,11 @@
             <p>Results {{ page_obj.start_index }}—{{ page_obj.end_index }}</p>
         {% endif %}
     {% else %}
-        <p class="mt-4 bold-text">😿 No links found</p>
-        <p>Let us know what topic you'd like us to curate more resources on - get in touch at info@howshouldilearn.com</p>
+        <div id="none-text">
+            <p class="mt-4 bold-text">😿 No links found</p>
+            <p>Let us know what topic you'd like us to curate more resources on - get in touch at info@howshouldilearn.com</p>
+        </div>
+        <p><a href="{% url 'links:index' %}"><i class="far fa-hand-point-left"></i> Back to home</a></p>
     {% endif %}
 {% endblock content %}
 
@@ -90,7 +94,18 @@
         });
         if (document.getElementById("searched")) {
             const searchResults = document.getElementById("results");
-            searchResults.scrollIntoView();
+            if (searchResults) {
+                searchResults.scrollIntoView();
+            }
+        }
+        const noResultsSection = document.getElementById("none-text");
+        const selectedItemsCount = document.getElementsByClassName("item").length;
+        if ((selectedItemsCount === 0) && noResultsSection) {
+            noResultsSection.innerHTML = "<p class='mt-4 text-warning'><i class='fas fa-exclamation-circle'></i> You haven't selected any topics - please try selecting some topics</p>"
+        }
+        const options = Array.prototype.filter.call(document.getElementsByTagName("input"), (i) => {return (i.name === "type")});
+        if (Array.prototype.filter.call(options, (i) => {return i.checked;}).length === 0) {
+            Array.prototype.forEach.call(options, (o) => {o.click()})
         }
     </script>
 {% endblock javascript %}
