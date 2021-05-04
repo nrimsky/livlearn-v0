@@ -1,6 +1,8 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand bold-text" href="{% url 'links:index' %}">💡</a>
+        <a class="navbar-brand bold-text" href="{% url 'links:index' %}"><img src="{% static 'media/logo.svg' %}"/></a>
         <button
                 class="navbar-toggler"
                 type="button"
