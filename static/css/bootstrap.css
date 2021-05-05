@@ -13835,3 +13835,7 @@ form > button {
 .unstyled-button {
   all: unset;
 }
+
+.special-font {
+  font-family: 'Changa One', cursive;
+}
