@@ -13837,5 +13837,6 @@ form > button {
 }
 
 .special-font {
-  font-family: 'Changa One', cursive;
+  font-family: 'Changa One', sans-serif;
+  font-style: italic;
 }

@@ -10,16 +10,18 @@
           content="How Should I Learn is a curated collection of the best learning resources on a wide variety of topics. Discover the most popular and engaging educational videos, blogs, books and courses carefully chosen to optimise your learning journey.">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/selectize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@1&display=swap" rel="stylesheet">
+
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
           integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@1&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/selectize.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     <title>{% block title %}{% endblock title %}</title>
 </head>
@@ -27,7 +29,52 @@
 <body>
 <div id="page-container">
     <div id="content-wrap">
-        {% include "navbar.html" %}
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand bold-text" href="{% url 'links:index' %}">
+                    <img src="{% static 'media/logo.svg' %}" alt="How Should I Learn Elephant Logo"/><span
+                        class="special-font text-dark"> &nbsp;LEARN BETTER</span>
+                </a>
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item active">
+                                <a href="{% url 'authapp:dashboard' %}"
+                                   class="btn btn-light mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm"><i
+                                        class="fas fa-user-alt"></i> {{ user.username }}</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{% url 'account_logout' %}"
+                                   class="btn-outline-light btn mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm"><i
+                                        class="fas fa-sign-out-alt"></i>
+                                    Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item active">
+                                <a href="{% url 'account_signup' %}"
+                                   class="btn btn-light mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm">Sign
+                                    up</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="{% url 'account_login' %}"
+                                   class="btn-outline-light btn mx-md-2 my-1 my-md-0 d-block d-md-inline-block btn-sm">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="container" style="padding-top: 20px">
             {% block content %}
             {% endblock content %}
